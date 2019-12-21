@@ -21,5 +21,5 @@ tEndereco Imovel::getEndereco()
 }
 double Imovel::getValor()
 {
-
+    return this->valor;
 }
