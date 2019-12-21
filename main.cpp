@@ -15,21 +15,7 @@ int main()
     2, 600, 1,200);
 
 
-    cout<<"ANUNCIO:\n\n";
-    cout<<"\tDescricao: "<<ap->getDescricao()<<endl;
-    cout<<"\tTipo de oferta: "<<((ap->getTipoOferta() == 1) ? "venda\n" : "aluguel\n");
-    cout<<"\tPreco: "<<ap->getValor()<<endl;
-    cout<<"\tEndereco:\n";
-    cout<<"\t\tCidade: "<<end.cidade<<endl;
-    cout<<"\t\tBairro: "<<end.bairro<<endl;
-    cout<<"\t\tCEP: "<<end.CEP<<endl;
-    cout<<"\t\tLogradouro: "<<end.logradouro<<endl;
-    cout<<"\t\tNumero: "<<end.numero<<endl;
-    cout<<"\tPosicao: "<<ap->getPosicao()<<endl;
-    cout<<"\tNumero de quartos: "<<ap->getNumeroDeQuartos()<<endl;
-    cout<<"\tValor do condominio: "<<ap->getValorDoCondominio()<<endl;
-    cout<<"\tNumero de vagas de garagem: "<<ap->getVagasDeGaragem()<<endl;
-    cout<<"\tArea: "<<ap->getArea()<<endl;
+    cout<<ap->toString();
 
 
     return 0;

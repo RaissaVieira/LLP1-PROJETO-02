@@ -18,6 +18,7 @@ public:
     double getValorDoCondominio();
     int getVagasDeGaragem();
     double getArea();
+    std::string toString();
 
 }; 
 
