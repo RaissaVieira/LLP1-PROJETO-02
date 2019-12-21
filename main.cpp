@@ -1,17 +1,17 @@
 #include <iostream>
 #include <iomanip>
+#include "LRY_IMO.h"
 #include "Apartamento.h"
 
 using namespace std;
 
 int main()
 {
-    Endereco end("Rua dos tolos", 0, "Bairro 778", "KDMNNT", "778");
-    Apartamento *ap = new Apartamento("Apzinho", 1, 250000, end, "nascente norte", 
-    2, 600, 1,200);
+    LRY_IMO imobiliaria;
 
-    cout<<ap->toString();
+    imobiliaria.cadastrarApartamento();
 
-
+    cout<<imobiliaria.toString();
+    
     return 0;
 }
