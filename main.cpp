@@ -1,19 +1,14 @@
 #include <iostream>
+#include <iomanip>
 #include "Apartamento.h"
 
 using namespace std;
 
 int main()
 {
-    tEndereco end;
-    end.bairro = "Bairro 778";
-    end.CEP = "778";
-    end.cidade = "KDMNNT";
-    end.logradouro = "Rua dos tolos";
-    end.numero = 0;
+    Endereco end("Rua dos tolos", 0, "Bairro 778", "KDMNNT", "778");
     Apartamento *ap = new Apartamento("Apzinho", 1, 250000, end, "nascente norte", 
     2, 600, 1,200);
-
 
     cout<<ap->toString();
 

@@ -1,6 +1,6 @@
 #include "Imovel.h"
 
-Imovel::Imovel(std::string descricao, int tipoOferta, int valor, tEndereco endereco)
+Imovel::Imovel(std::string descricao, int tipoOferta, int valor, Endereco endereco)
 {
     this->descricao = descricao;
     this->tipoOferta = tipoOferta;
@@ -15,7 +15,7 @@ int Imovel::getTipoOferta()
 {
     return this->tipoOferta;
 }   
-tEndereco Imovel::getEndereco()
+Endereco Imovel::getEndereco()
 {
     return this->endereco;
 }

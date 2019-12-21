@@ -1,8 +1,9 @@
 #include "Apartamento.h"
+#include <iomanip>
+#include <sstream>
 
 
-
-Apartamento::Apartamento(std::string descricao, int tipoOferta, int valor, tEndereco endereco,std::string posicao, 
+Apartamento::Apartamento(std::string descricao, int tipoOferta, int valor, Endereco endereco,std::string posicao, 
 int numeroDeQuartos, double valorDoCondominio, int vagasDeGaragem,double area) : Imovel(descricao, tipoOferta, valor, endereco)
 {
     this->posicao = posicao;
@@ -35,25 +36,27 @@ double Apartamento::getArea()
 
 std::string Apartamento::toString()
 {
-    std::string saida = "";
-    saida +="\tDescricao: " + getDescricao() + "\n";
-    saida += "\tTipo de oferta: ";
-    if(getTipoOferta() == 1)
-        saida += "venda\n";
-    else
-        saida += "aluguel\n"; 
-    saida += "\tPreco: "+ std::to_string(getValor()) + "\n";
-    saida +="\tEndereco:\n";
-    saida +="\t\tCidade: " + this->endereco.cidade + "\n";
-    saida +="\t\tBairro: " + this->endereco.bairro + "\n";
-    saida +="\t\tCEP: " + this->endereco.CEP + "\n";
-    saida +="\t\tLogradouro: "+ this->endereco.logradouro + "\n";
-    saida +="\t\tNumero: " + std::to_string(this->endereco.numero) + "\n";
-    saida += "\tPosicao: " + getPosicao() + "\n";
-    saida +="\tNumero de quartos: " + std::to_string(getNumeroDeQuartos()) + "\n";
-    saida +="\tValor do condominio: " + std::to_string(getValorDoCondominio()) + "\n";
-    saida +="\tNumero de vagas de garagem: " + std::to_string(getVagasDeGaragem()) + "\n";
-    saida +="\tArea: " + std::to_string(getArea()) + "\n";
+    std::stringstream saida;
+    saida << std::setprecision(2) << std::fixed;
 
-    return saida;
+    saida << "\tDescricao: " + getDescricao() << "\n";
+    saida << "\tTipo de oferta: ";
+    if(getTipoOferta() == 1)
+        saida << "venda\n";
+    else
+        saida << "aluguel\n"; 
+    saida << "\tPreco: " << getValor() << "\n";
+    saida << "\tEndereco:\n";
+    saida << "\t\tCidade: " + this->endereco.getCidade() << "\n";
+    saida << "\t\tBairro: " << this->endereco.getBairro() << "\n";
+    saida << "\t\tCEP: " << this->endereco.getCEP() << "\n";
+    saida << "\t\tLogradouro: " << this->endereco.getLogradouro() << "\n";
+    saida << "\t\tNumero: " << this->endereco.getNumero() << "\n";
+    saida << "\tPosicao: " << getPosicao() << "\n";
+    saida << "\tNumero de quartos: " << getNumeroDeQuartos() << "\n";
+    saida << "\tValor do condominio: " << getValorDoCondominio() << "\n";
+    saida << "\tNumero de vagas de garagem: " << getVagasDeGaragem() << "\n";
+    saida << "\tArea: " << getArea() << "\n";
+
+    return saida.str();
 }
