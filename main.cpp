@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    //Fazendo alguns testes
     LRY_IMO imobiliaria;
 
     imobiliaria.cadastrarApartamento();

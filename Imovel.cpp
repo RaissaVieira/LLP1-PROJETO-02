@@ -23,3 +23,13 @@ double Imovel::getValor()
 {
     return this->valor;
 }
+
+int Imovel::getTipo()
+{
+    return this->tipo;
+}
+
+void Imovel::setTipo(int tipo)//Invocada quando cadastramos um imóvel, para identificá-lo
+{
+    this->tipo = tipo;
+}

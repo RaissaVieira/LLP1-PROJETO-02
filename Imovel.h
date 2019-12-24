@@ -6,6 +6,7 @@
 
 class Imovel{
 protected:
+    int tipo; // 1 -> apartamento, 2 -> casa, 3 -> terreno
     std::string descricao;
     double valor;
     int tipoOferta; //Façamos o número 1 como venda e o número 2 como aluguel.
@@ -16,6 +17,9 @@ public:
     int getTipoOferta();
     Endereco getEndereco();
     double getValor();
+    int getTipo();
+
+    void setTipo(int tipo);
 
 };
 

@@ -42,8 +42,9 @@ void LRY_IMO::cadastrarApartamento()
     end = new Endereco(logradouro, numero, bairro, cidade, CEP);
 
     ap = new Apartamento(descricao,tipoOferta,valor, *end,posicao, numeroDeQuartos, valorDoCondominio, vagasDeGaragem, area);
+    ap->setTipo(1);
 
-    this->apartamentos.push_back(*ap);
+    this->imoveis.push_back(ap);
 
     std::cout<<"Apartamento cadastrado com sucesso!\n";
 
@@ -51,14 +52,18 @@ void LRY_IMO::cadastrarApartamento()
 
 std::string LRY_IMO::toString()
 {
-    std::vector<Apartamento>::iterator it;
-    std::string saida = ""; 
+    std::vector<Imovel *>::iterator it;
+    std::string saida;
 
-    for(it = this->apartamentos.begin(); it < apartamentos.end(); it++)
+
+    std::cout << "\t=========APARTAMENTOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        saida += it->toString();
+        if((*it)->getTipo() == 1)
+        {
+            saida += ((Apartamento *)*it)->toString();
+        }
     }
-
     /*
         Implemente aqui o toString para os terrenos e casas
     */

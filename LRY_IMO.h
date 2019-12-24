@@ -6,7 +6,7 @@
 
 class LRY_IMO{ //CRUD imobiliária
 private:
-    std::vector<Apartamento>apartamentos;
+    std::vector<Imovel *>imoveis;
 public:
     void cadastrarApartamento();
     std::string toString();
