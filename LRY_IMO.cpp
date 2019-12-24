@@ -1,6 +1,10 @@
 #include "LRY_IMO.h"
 #include <iostream>
 
+#define TIPO_APARTAMENTO 1
+#define TIPO_CASA 2
+#define TIPO_TERRENO 3
+
 void LRY_IMO::cadastrarApartamento()
 {
     Apartamento *ap;
@@ -59,7 +63,7 @@ std::string LRY_IMO::toString()
     std::cout << "\t=========APARTAMENTOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        if((*it)->getTipo() == 1)
+        if((*it)->getTipo() == TIPO_APARTAMENTO)
         {
             saida += ((Apartamento *)*it)->toString();
         }

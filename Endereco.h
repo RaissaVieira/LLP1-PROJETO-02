@@ -11,8 +11,8 @@ private:
     std::string cidade;
     std::string CEP;
 public:
-    Endereco(){}
-    Endereco(std::string logradouro, int numero, std::string bairro, std::string cidade, std::string CEP);
+    //O uso de parâmetros opcionais no construtor permite-nos ter também um construtor sem parâmetros.
+    Endereco(std::string logradouro = "", int numero = 0, std::string bairro = "", std::string cidade = "", std::string CEP = "");
     std::string getLogradouro();
     int getNumero();
     std::string getBairro();

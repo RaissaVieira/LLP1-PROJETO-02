@@ -22,7 +22,7 @@ int Apartamento::getNumeroDeQuartos()
 }
 double Apartamento::getValorDoCondominio()
 {   
-    return this->valor;
+    return this->valorDoCondominio;
 }   
 int Apartamento::getVagasDeGaragem()
 {
