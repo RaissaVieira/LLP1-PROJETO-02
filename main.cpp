@@ -13,7 +13,7 @@ int main()
     imobiliaria.cadastrarApartamento();
     imobiliaria.cadastrarTerreno();
 
-    cout<<imobiliaria.toString();
+    imobiliaria.toString();
     
     return 0;
 }
