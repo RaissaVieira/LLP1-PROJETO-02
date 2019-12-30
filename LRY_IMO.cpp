@@ -109,6 +109,14 @@ std::string LRY_IMO::toString()
     /*
         Implemente aqui o toString para os terrenos e casas
     */
+    std::cout << "\t=========Terrenos=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO)
+        {
+            saida += ((Terreno *)*it)->toString();
+        }
+    }
 
     return saida;
 }
