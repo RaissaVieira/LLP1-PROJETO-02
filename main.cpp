@@ -11,6 +11,7 @@ int main()
     LRY_IMO imobiliaria;
 
     imobiliaria.cadastrarApartamento();
+    imobiliaria.cadastrarTerreno();
 
     cout<<imobiliaria.toString();
     

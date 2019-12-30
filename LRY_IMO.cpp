@@ -54,6 +54,44 @@ void LRY_IMO::cadastrarApartamento()
 
 }
 
+void LRY_IMO::cadastrarTerreno ()
+{
+    Terreno *ter;
+    Endereco *end;
+    std::string descricao, cidade, bairro, CEP, logradouro;
+    int tipoOferta, numero;
+    double valor, area;
+
+    std::cout<<"Descricao: ";
+    getline(std::cin,descricao);
+    std::cout<<"Tipo de oferta: ";
+    std::cin>>tipoOferta;
+    std::cout<<"Valor: ";
+    std::cin>>valor;
+    std::cout<<"Cidade: ";
+    std::cin.ignore();
+    getline(std::cin,cidade);
+    std::cout<<"Bairro: ";
+    getline(std::cin,bairro);
+    std::cout<<"CEP: ";
+    getline(std::cin,CEP);
+    std::cout<<"Logradouro: ";
+    getline(std::cin,logradouro);
+    std::cout<<"Numero: ";
+    std::cin>>numero;
+    std::cout<<"Area: ";
+    std::cin>>area;
+    std::cin.ignore();
+
+    end = new Endereco(logradouro, numero, bairro, cidade, CEP);
+    ter = new Terreno (descricao,tipoOferta,valor, *end, area);
+    ter->setTipo(1);
+    this->imoveis.push_back(ter);
+
+    std::cout<<"Terreno cadastrado com sucesso!\n";
+
+}
+
 std::string LRY_IMO::toString()
 {
     std::vector<Imovel *>::iterator it;
