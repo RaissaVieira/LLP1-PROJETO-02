@@ -2,8 +2,41 @@
 #include <sstream>
 
 using namespace std;
+void MenuCadastro (){
+    string opcao;
+    cout<<"LRY Imobiliária"<<endl;
+    cout<<"Cadastro"<<endl;
+    cout<<"\t1-Cadastrar Casa"<<endl;
+    cout<<"\t2-Cadastrar Apartamento"<<endl;
+    cout<<"\t3-Cadastrar Terreno"<<endl;
+    cout<<"\t4-Voltar"<<endl;
+    cout<<"\tDigite a operação que deseja ser realizada: ";
+    cin>>opcao;
 
-int MenuPrincipal(){
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
+
+    switch (escolha)
+    {
+    case 0:
+        MenuCadastro();
+        break;
+    case 1:
+        cout<<"Cadastro"<<endl;
+        break;
+    case 2:
+        cout<<"Listar"<<endl;
+        break;
+    case 3:
+        cout<<"Buscar"<<endl;
+        break;
+    case 4: 
+        MenuPrincipal();
+        break;
+    }
+}
+void MenuPrincipal(){
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
     cout<<"\t1-Cadastro"<<endl;
@@ -25,7 +58,7 @@ int MenuPrincipal(){
         MenuPrincipal();
         break;
     case 1:
-        cout<<"Cadastro"<<endl;
+        MenuCadastro();
         break;
     case 2:
         cout<<"Listar"<<endl;
@@ -40,11 +73,10 @@ int MenuPrincipal(){
         cout<<"Editar"<<endl;
         break;
     case 6:
-        return 0;
+        break;
     }
-
-    
 }
+
 int main (void){
     setlocale(LC_ALL,"portuguese");
     MenuPrincipal();
