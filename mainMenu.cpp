@@ -1,6 +1,5 @@
 #include "LRY_IMO.h"
-#include <iostream>
-#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -16,7 +15,9 @@ int MenuPrincipal(){
     cout<<"\tDigite a operação que deseja ser realizada: ";
     cin>>opcao;
 
-    int escolha = stoi(opcao);
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
 
     switch (escolha)
     {
@@ -25,17 +26,21 @@ int MenuPrincipal(){
         break;
     case 1:
         cout<<"Cadastro"<<endl;
+        break;
     case 2:
         cout<<"Listar"<<endl;
+        break;
     case 3:
         cout<<"Buscar"<<endl;
+        break;
     case 4: 
         cout<<"Remover"<<endl;
+        break;
     case 5:
         cout<<"Editar"<<endl;
+        break;
     case 6:
         return 0;
-
     }
 
     
