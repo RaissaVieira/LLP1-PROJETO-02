@@ -12,8 +12,10 @@ int main()
 
     imobiliaria.cadastrarApartamento();
     imobiliaria.cadastrarTerreno();
+    imobiliaria.cadastrarCasa();
 
     imobiliaria.toString();
+    imobiliaria.getImoveis(); //Lista todos os terrenos, casas e apartamentos
     
     return 0;
 }

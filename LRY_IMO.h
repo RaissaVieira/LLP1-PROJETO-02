@@ -12,7 +12,8 @@ private:
 public:
     void cadastrarApartamento();
     void cadastrarTerreno();
-    void cadastrarCasa();
+    void cadastrarCasa(); 
+    void getImoveis(); //Lista todos os terrenos, casas e apartamentos
     std::string toString();
 
 };

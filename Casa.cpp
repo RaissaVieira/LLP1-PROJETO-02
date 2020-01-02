@@ -24,7 +24,7 @@ double Casa::getAreaDoTerreno(){
 double Casa::getAreaConstruida(){
     return areaConstruida;
 }
-string Casa::toString(){
+std::string Casa::toString(){
     std::stringstream saida;
     saida << std::setprecision(2) << std::fixed;
 
@@ -43,8 +43,8 @@ string Casa::toString(){
     saida << "\t\tNumero: " << this->endereco.getNumero() << "\n";
     saida << "\tNumero de pavimentos: " << getNumeroDePavimentos() << "\n";
     saida << "\tNumero de quartos: " << getNumeroDeQuartos() << "\n";
-    saida << "\tArea do terreno: " << getAreaDoTerreno << "\n";
-    saida << "\tArea constuida: " << getAreaConstruida << "\n";
+    saida << "\tArea do terreno: " << getAreaDoTerreno() << "\n";
+    saida << "\tArea constuida: " << getAreaConstruida() << "\n";
 
     return saida.str();
 }

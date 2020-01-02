@@ -45,7 +45,7 @@ void LRY_IMO::cadastrarApartamento()
 
     end = new Endereco(logradouro, numero, bairro, cidade, CEP);
 
-    ap = new Apartamento(descricao,tipoOferta,valor, *end,posicao, numeroDeQuartos, valorDoCondominio, vagasDeGaragem, area);
+    ap = new Apartamento(descricao,tipoOferta,valor, *end, posicao, numeroDeQuartos, valorDoCondominio, vagasDeGaragem, area);
     ap->setTipo(1);
 
     this->imoveis.push_back(ap);
@@ -134,7 +134,7 @@ void LRY_IMO::cadastrarCasa()
 
     this->imoveis.push_back(casa);
 
-    std::cout<<"Casa cadastrado com sucesso!\n";
+    std::cout<<"Casa cadastrada com sucesso!\n";
 
 }
 
@@ -149,11 +149,12 @@ std::string LRY_IMO::toString()
     {
         if((*it)->getTipo() == TIPO_APARTAMENTO)
         {
+            std::cout << "entrei";
             saida += ((Apartamento *)*it)->toString();
         }
     }
    
-    std::cout << "\t=========Terrenos=========\n";
+    std::cout << "\t=========TERRENOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
         if((*it)->getTipo() == TIPO_TERRENO)
@@ -162,7 +163,7 @@ std::string LRY_IMO::toString()
         }
     }
 
-    std::cout << "\t=========Casas=========\n";
+    std::cout << "\t=========CASAS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
         if((*it)->getTipo() == TIPO_CASA)
@@ -172,4 +173,50 @@ std::string LRY_IMO::toString()
     }
 
     return saida;
+}
+
+void LRY_IMO::getImoveis(){
+    //Lista todos os terrenos, casas e apartamentos
+    std::vector<Imovel *>::iterator it;
+    std::string saida;
+
+
+    std::cout << "\t=========APARTAMENTOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
+    {
+        if((*it)->getTipo() == TIPO_APARTAMENTO)
+        {
+
+            std::cout << "Descricao: " << ((Apartamento *)*it)->getDescricao() << "\n";
+            std::cout << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
+            std::cout << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+            std::cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
+        }
+    }
+   
+    std::cout << "\t=========TERRENOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO)
+        {
+
+            std::cout << "Descricao: " << ((Terreno *)*it)->getDescricao() << "\n";;
+            std::cout << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
+            std::cout << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+            std::cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
+        }
+    }
+
+    std::cout << "\t=========CASAS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA)
+        {         
+
+            std::cout << "Descricao: " << ((Casa *)*it)->getDescricao() << "\n";
+            std::cout << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
+            std::cout << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+            std::cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
+        }
+    }
 }
