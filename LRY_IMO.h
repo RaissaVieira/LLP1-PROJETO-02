@@ -3,6 +3,7 @@
 
 #include "Apartamento.h"
 #include "Terreno.h"
+#include "Casa.h"
 #include <vector>
 
 class LRY_IMO{ //CRUD imobiliária
@@ -11,6 +12,7 @@ private:
 public:
     void cadastrarApartamento();
     void cadastrarTerreno();
+    void cadastrarCasa();
     std::string toString();
 
 };

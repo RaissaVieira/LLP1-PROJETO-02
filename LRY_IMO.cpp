@@ -85,10 +85,56 @@ void LRY_IMO::cadastrarTerreno ()
 
     end = new Endereco(logradouro, numero, bairro, cidade, CEP);
     ter = new Terreno (descricao,tipoOferta,valor, *end, area);
-    ter->setTipo(1);
+    ter->setTipo(3);
     this->imoveis.push_back(ter);
 
     std::cout<<"Terreno cadastrado com sucesso!\n";
+
+}
+
+void LRY_IMO::cadastrarCasa()
+{
+    Casa *casa;
+    Endereco *end;
+    std::string descricao, cidade, bairro, CEP, logradouro;
+    int tipoOferta, numero, numeroDePavimentos, numeroDeQuartos;
+    double valor, areaDoTerreno, areaConstruida;
+
+    std::cout<<"Descricao: ";
+    getline(std::cin,descricao);
+    std::cout<<"Tipo de oferta: ";
+    std::cin>>tipoOferta;
+    std::cout<<"Valor: ";
+    std::cin>>valor;
+    std::cout<<"Cidade: ";
+    std::cin.ignore();
+    getline(std::cin,cidade);
+    std::cout<<"Bairro: ";
+    getline(std::cin,bairro);
+    std::cout<<"CEP: ";
+    getline(std::cin,CEP);
+    std::cout<<"Logradouro: ";
+    getline(std::cin,logradouro);
+    std::cout<<"Numero: ";
+    std::cin>>numero;
+    std::cout<<"Numero de pavimentos ";
+    std::cin>>numeroDePavimentos;
+    std::cout<<"Numero de quartos: ";
+    std::cin>>numeroDeQuartos;
+    std::cout<<"Area do terreno: ";
+    std::cin>>areaDoTerreno;
+    std::cout<<"Area construida: ";
+    std::cin>>areaConstruida;
+    std::cin.ignore();
+
+    end = new Endereco(logradouro, numero, bairro, cidade, CEP);
+
+    casa = new Casa(descricao,tipoOferta,valor, *end, numeroDePavimentos, numeroDeQuartos, areaDoTerreno, areaConstruida);
+    casa->setTipo(2);
+
+    this->imoveis.push_back(casa);
+
+    std::cout<<"Casa cadastrado com sucesso!\n";
 
 }
 
@@ -106,17 +152,22 @@ std::string LRY_IMO::toString()
             saida += ((Apartamento *)*it)->toString();
         }
     }
-
-    /*
-        Implemente aqui o toString para os terrenos e casas
-    */
    
     std::cout << "\t=========Terrenos=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
         if((*it)->getTipo() == TIPO_TERRENO)
         {
             saida += ((Terreno *)*it)->toString();
+        }
+    }
+
+    std::cout << "\t=========Casas=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA)
+        {
+            saida += ((Casa *)*it)->toString();
         }
     }
 
