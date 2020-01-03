@@ -2,6 +2,7 @@
 #include <sstream>
 
 using namespace std;
+
 void MenuCadastro (){
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -76,7 +77,6 @@ void MenuPrincipal(){
         break;
     }
 }
-
 int main (void){
     setlocale(LC_ALL,"portuguese");
     MenuPrincipal();
