@@ -1,12 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include "LRY_IMO.h"
-#include "Apartamento.h"
+#include <sstream>
+
 
 using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL,"portuguese");
     //Fazendo alguns testes
     LRY_IMO imobiliaria;
 
@@ -14,7 +16,6 @@ int main()
     imobiliaria.cadastrarTerreno();
     imobiliaria.cadastrarCasa();
 
-    imobiliaria.toString();
     imobiliaria.getImoveis(); //Lista todos os terrenos, casas e apartamentos
     
     return 0;
