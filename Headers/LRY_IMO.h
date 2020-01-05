@@ -1,9 +1,9 @@
 #ifndef LRY_IMO_H
 #define LRY_IMO_H
 
-#include "Apartamento.h"
-#include "Terreno.h"
-#include "Casa.h"
+#include "../Headers/Apartamento.h"
+#include "../Headers/Terreno.h"
+#include "../Headers/Casa.h"
 #include <vector>
 
 #define VENDA 1
@@ -24,6 +24,9 @@ public:
     void listarApartamento(int tipoOferta = VENDA_OU_ALUGUEL);
     void listarTipoAluguel();
     void listarTipoVenda();
+    void lerCasasSalvas();
+    void lerApartamentosSalvos();
+    void lerTerrenosSalvos();
 
     std::string toString();
 

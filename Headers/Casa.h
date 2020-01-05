@@ -1,7 +1,7 @@
 #ifndef CASA_H
 #define CASA_H
 
-#include "Imovel.h"
+#include "../Headers/Imovel.h"
 
 using namespace std;
 

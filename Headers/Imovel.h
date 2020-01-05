@@ -1,7 +1,7 @@
 #ifndef IMOVEL_H
 #define IMOVEL_H
 
-#include "Endereco.h"
+#include "../Headers/Endereco.h"
 
 
 class Imovel{
