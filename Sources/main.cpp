@@ -20,7 +20,11 @@ int main()
 
     imobiliaria.getImoveis();
 
-    //imobiliaria.getImoveis(); //Lista todos os terrenos, casas e apartamentos
+    imobiliaria.cadastrarCasa();
+
+    imobiliaria.getImoveis();
+    imobiliaria.salvarCasas();
+
     
     return 0;
 }

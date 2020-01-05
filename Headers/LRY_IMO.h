@@ -27,6 +27,12 @@ public:
     void lerCasasSalvas();
     void lerApartamentosSalvos();
     void lerTerrenosSalvos();
+    void lerImoveisSalvos();
+    void salvarApartamentos();
+    void salvarCasas();
+    void salvarTerrenos();
+    void salvarImoveis();
+    
 
     std::string toString();
 

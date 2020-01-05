@@ -47,6 +47,7 @@ void LRY_IMO::lerCasasSalvas()
         this->imoveis.push_back(casa);
     }
 
+    casas.close();
 }
 
 void LRY_IMO::lerApartamentosSalvos()
@@ -85,12 +86,12 @@ void LRY_IMO::lerApartamentosSalvos()
 
         this->imoveis.push_back(ap);
     }
+    apartamentos.close();
 }
 
 void LRY_IMO::lerTerrenosSalvos()
 {
-    ifstream terrenos;
-    terrenos.open("./Arquivos/Terrenos.txt");
+    ifstream terrenos("./Arquivos/Terrenos.txt");
 
     while(!terrenos.eof())
     {
@@ -117,6 +118,112 @@ void LRY_IMO::lerTerrenosSalvos()
         ter->setTipo(3);
         this->imoveis.push_back(ter);
     }
+    terrenos.close();
+}
+
+void LRY_IMO::lerImoveisSalvos()
+{
+    lerApartamentosSalvos();
+    lerCasasSalvas();
+    lerTerrenosSalvos();
+}
+
+void LRY_IMO::salvarCasas()
+{
+    ofstream casas("./Arquivos/Casas.txt");
+    vector<Imovel *>::iterator it;
+    int contaCasas = 0;
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA)
+        {        
+            if(contaCasas > 0)//Evita que se pule a primeira linha do arquivo
+            {
+                casas << "\n"; //Isto aqui serve para pular linha entre o fim dos dados de uma casa e o começo dos dados de outra.
+            } 
+            casas << ((Casa *)*it)->getDescricao() << "\n";
+            casas << ((Casa *)*it)->getTipoOferta() << "\n";
+            casas << ((Casa *)*it)->getValor() << "\n";
+            casas << ((Casa *)*it)->getEndereco().getCidade() << "\n";
+            casas << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+            casas << ((Casa *)*it)->getEndereco().getCEP() << "\n";
+            casas << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
+            casas << ((Casa *)*it)->getEndereco().getNumero() << "\n";
+            casas << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
+            casas << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
+            casas << ((Casa *)*it)->getAreaDoTerreno() << "\n";
+            casas << ((Casa *)*it)->getAreaConstruida();
+            contaCasas++;
+        }
+    }
+    casas.close();
+}
+
+void LRY_IMO::salvarApartamentos()
+{
+    ofstream apartamentos("./Arquivos/Apartamentos.txt");
+    vector<Imovel *>::iterator it;
+    int contaApartamentos = 0;
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_APARTAMENTO)
+        {        
+            if(contaApartamentos > 0)
+            {
+                apartamentos << "\n";//Procedimento análogo ao que ocorre no método salvarCasas().
+            }
+            apartamentos << ((Apartamento *)*it)->getDescricao() << "\n";
+            apartamentos << ((Apartamento *)*it)->getTipoOferta() << "\n";
+            apartamentos << ((Apartamento *)*it)->getValor() << "\n";
+            apartamentos << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
+            apartamentos << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+            apartamentos << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
+            apartamentos << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
+            apartamentos << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
+            apartamentos << ((Apartamento *)*it)->getPosicao()<< "\n";
+            apartamentos << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
+            apartamentos << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
+            apartamentos << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
+            apartamentos << ((Apartamento *)*it)->getArea();
+            contaApartamentos++;
+        }
+    }
+    apartamentos.close();
+}
+
+void LRY_IMO::salvarTerrenos()
+{
+    ofstream terrenos("./Arquivos/Terrenos.txt");
+    vector<Imovel *>::iterator it;
+    int contaTerrenos = 0;
+
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO)
+        {        
+            if(contaTerrenos > 0){
+                terrenos << "\n"; //Procedimento análogo ao que ocorre no método salvarCasas().
+            }  
+            terrenos << ((Terreno *)*it)->getDescricao() << "\n";
+            terrenos << ((Terreno *)*it)->getTipoOferta() << "\n";
+            terrenos << ((Terreno *)*it)->getValor() << "\n";
+            terrenos << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
+            terrenos << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+            terrenos << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
+            terrenos << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
+            terrenos << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
+            terrenos << ((Terreno *)*it)->getArea();
+            contaTerrenos++;
+        }
+    }
+    terrenos.close();
+}
+
+void LRY_IMO::salvarImoveis()
+{
+    salvarApartamentos();
+    salvarCasas();
+    salvarTerrenos();
 }
 
 void LRY_IMO::cadastrarApartamento(){
@@ -228,7 +335,7 @@ void LRY_IMO::cadastrarCasa(){
     getline(cin,logradouro);
     cout<<"Número: ";
     cin>>numero;
-    cout<<"Número de pavimentos ";
+    cout<<"Número de pavimentos: ";
     cin>>numeroDePavimentos;
     cout<<"Número de quartos: ";
     cin>>numeroDeQuartos;
@@ -261,17 +368,17 @@ void LRY_IMO::listarCasa(int tipoOferta){
         {         
             cout << "\t=========Casa "<<i<<"=========\n";
             cout << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-            cout << "CEP: " << ((Casa *)*it)->getEndereco().getCEP() << "\n";
+            cout << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+            cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
             cout << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
             cout << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+            cout << "CEP: " << ((Casa *)*it)->getEndereco().getCEP() << "\n";
             cout << "Logradouro: " << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
             cout << "Número: " << ((Casa *)*it)->getEndereco().getNumero() << "\n";
-            cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
-            cout << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
-            cout << "Área Construída: " << ((Casa *)*it)->getAreaConstruida() << "\n";
-            cout << "Área do Terreno: " << ((Casa *)*it)->getAreaDoTerreno() << "\n";
             cout << "Número de Pavimentos: " << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
             cout << "Número de Quartos: " << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
+            cout << "Área do Terreno: " << ((Casa *)*it)->getAreaDoTerreno() << "\n";
+            cout << "Área Construída: " << ((Casa *)*it)->getAreaConstruida() << "\n";
             i++;
         }
     }
@@ -292,18 +399,19 @@ void LRY_IMO::listarApartamento(int tipoOferta){
         {         
             cout << "\t=========Apartamento "<<i<<"=========\n";
             cout << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-            cout << "CEP: " << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
+            cout << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+            cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
             cout << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
             cout << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+            cout << "CEP: " << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
             cout << "Logradouro: " << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
             cout << "Número: " << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
-            cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
-            cout << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
-            cout << "Área: " << ((Apartamento *)*it)->getArea() << "\n";
+            cout << "Posição: " << ((Apartamento *)*it)->getPosicao()<< "\n";
+            cout << "Número de Quartos: " << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
             cout << "Valor do Condominio: " << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
             cout << "Vagas de Garagem: " << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
-            cout << "Número de Quartos: " << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
-            cout << "Posição: " << ((Apartamento *)*it)->getPosicao()<< "\n";
+            cout << "Área: " << ((Apartamento *)*it)->getArea() << "\n";
+            
             i++;
         }
     }
@@ -324,13 +432,13 @@ void LRY_IMO::listarTerreno(int tipoOferta){
         {         
             cout << "\t=========Terreno "<<i<<"=========\n";
             cout << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-            cout << "CEP: " << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
+            cout << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+            cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
             cout << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
             cout << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+            cout << "CEP: " << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
             cout << "Logradouro: " << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
             cout << "Número: " << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
-            cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
-            cout << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
             cout << "Área : " << ((Terreno *)*it)->getArea() << "\n";
             i++;
         }
