@@ -1,6 +1,8 @@
 #include "../Headers/Terreno.h"
 #include <sstream>
 #include <iomanip>
+
+
 Terreno::Terreno(std::string descricao, int tipoOferta, int valor, Endereco endereco, 
 double area) : Imovel(descricao,tipoOferta,valor,endereco)
 {  
@@ -10,23 +12,23 @@ double Terreno::getArea(){
     return this->area;
 }
 std::string Terreno::toString(){
-     std::stringstream string;
-     string << std::setprecision(2) << std::fixed;
-     string << "\tDescricao: " + getDescricao() << "\n";
-     string << "\tTipo de oferta: ";
+     std::stringstream saida;
+     saida << std::setprecision(2) << std::fixed;
+     saida << "\tDescricao: " + getDescricao() << "\n";
+     saida << "\tTipo de oferta: ";
      if(getTipoOferta() == 1)
-        string << "venda\n";
+        saida << "venda\n";
      else
-        string << "aluguel\n"; 
-    string << "\tPreco: " << getValor() << "\n";
-    string << "\tEndereco:\n";
-    string << "\t\tCidade: " + this->endereco.getCidade() << "\n";
-    string << "\t\tBairro: " << this->endereco.getBairro() << "\n";
-    string << "\t\tCEP: " << this->endereco.getCEP() << "\n";
-    string << "\t\tLogradouro: " << this->endereco.getLogradouro() << "\n";
-    string << "\t\tNumero: " << this->endereco.getNumero() << "\n";
-    string << "\tArea: " << getArea() << "\n";
+        saida << "aluguel\n"; 
+    saida << "\tPreco: " << getValor() << "\n";
+    saida << "\tEndereco:\n";
+    saida << "\t\tCidade: " + this->endereco.getCidade() << "\n";
+    saida << "\t\tBairro: " << this->endereco.getBairro() << "\n";
+    saida << "\t\tCEP: " << this->endereco.getCEP() << "\n";
+    saida << "\t\tLogradouro: " << this->endereco.getLogradouro() << "\n";
+    saida << "\t\tNumero: " << this->endereco.getNumero() << "\n";
+    saida << "\tArea: " << getArea() << "\n";
 
-    return string.str();
+    return saida.str();
 
 }
