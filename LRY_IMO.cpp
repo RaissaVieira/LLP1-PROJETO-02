@@ -5,6 +5,11 @@
 #define TIPO_CASA 2
 #define TIPO_TERRENO 3
 
+#define VENDA 1
+#define ALUGUEL 2
+#define VENDA_OU_ALUGUEL 3
+
+
 using namespace std;
 
 void LRY_IMO::cadastrarApartamento(){
@@ -137,7 +142,7 @@ void LRY_IMO::cadastrarCasa(){
 
 }
 
-void LRY_IMO::listarCasa(){
+void LRY_IMO::listarCasa(int tipoOferta){
     
     vector<Imovel *>::iterator it;
     string saida;
@@ -145,7 +150,7 @@ void LRY_IMO::listarCasa(){
     cout << "\t=========CASAS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        if((*it)->getTipo() == TIPO_CASA)
+        if(((*it)->getTipo() == TIPO_CASA)  && (((*it)->getTipoOferta() == tipoOferta) || tipoOferta == VENDA_OU_ALUGUEL))
         {         
             cout << "\t=========Casa "<<i<<"=========\n";
             cout << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
@@ -163,8 +168,12 @@ void LRY_IMO::listarCasa(){
             i++;
         }
     }
+    if(i == 1)
+    {
+        cout << "Nenhum resultado encontrado...\n";
+    }
 }
-void LRY_IMO::listarApartamento(){
+void LRY_IMO::listarApartamento(int tipoOferta){
     
     vector<Imovel *>::iterator it;
     int i=1;
@@ -172,7 +181,7 @@ void LRY_IMO::listarApartamento(){
     cout << "\t=========Apartamentos=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        if((*it)->getTipo() == TIPO_APARTAMENTO)
+        if(((*it)->getTipo() == TIPO_APARTAMENTO) && (((*it)->getTipoOferta() == tipoOferta) || tipoOferta == VENDA_OU_ALUGUEL))
         {         
             cout << "\t=========Apartamento "<<i<<"=========\n";
             cout << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
@@ -191,8 +200,12 @@ void LRY_IMO::listarApartamento(){
             i++;
         }
     }
+    if(i == 1)
+    {
+        cout << "Nenhum resultado encontrado...\n";
+    }
 }
-void LRY_IMO::listarTerreno(){
+void LRY_IMO::listarTerreno(int tipoOferta){
     
     vector<Imovel *>::iterator it;
     int i=1;
@@ -200,7 +213,7 @@ void LRY_IMO::listarTerreno(){
     cout << "\t=========Terrenos=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        if((*it)->getTipo() == TIPO_TERRENO)
+        if(((*it)->getTipo() == TIPO_TERRENO)  && (((*it)->getTipoOferta() == tipoOferta) || tipoOferta == VENDA_OU_ALUGUEL))
         {         
             cout << "\t=========Terreno "<<i<<"=========\n";
             cout << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
@@ -215,6 +228,10 @@ void LRY_IMO::listarTerreno(){
             i++;
         }
     }
+    if(i == 1)
+    {
+        cout << "Nenhum resultado encontrado...\n";
+    }
 }
 void LRY_IMO::getImoveis(){
     listarCasa();
@@ -222,92 +239,28 @@ void LRY_IMO::getImoveis(){
     listarApartamento();
 }
 
+void LRY_IMO::listarTipoAluguel()
+{
+    cout << "Imoveis para alugar:" << endl;
+    listarCasa(ALUGUEL);
+    listarTerreno(ALUGUEL);
+    listarApartamento(ALUGUEL);
+}
+
+void LRY_IMO::listarTipoVenda()
+{
+    cout << "Imoveis para vender:" << endl;
+    listarCasa(VENDA);
+    listarTerreno(VENDA);
+    listarApartamento(VENDA);
+}
+
+
 /*
     GALERA, OS MÉTODOS TOSTRING E GETIMOVEIS NÃO FAZEM A MESMA COISA NÃO?
     PS.: Quando eu testo o toString não funciona...
     Aí eu pensei em complementar o GetImoveis com mais informações, deixei toString comentado.
-*/
 
-/*std::string LRY_IMO::toString(){
-    std::vector<Imovel *>::iterator it;
-    std::string saida;
-
-
-    std::cout << "\t=========APARTAMENTOS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
-    {
-        if((*it)->getTipo() == TIPO_APARTAMENTO)
-        {
-            std::cout << "entrei";
-            saida += ((Apartamento *)*it)->toString();
-        }
-    }
-   
-    std::cout << "\t=========TERRENOS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
-    {
-        if((*it)->getTipo() == TIPO_TERRENO)
-        {
-            saida += ((Terreno *)*it)->toString();
-        }
-    }
-
-    std::cout << "\t=========CASAS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
-    {
-        if((*it)->getTipo() == TIPO_CASA)
-        {
-            saida += ((Casa *)*it)->toString();
-        }
-    }
-
-    return saida;
-}
-
-void LRY_IMO::getImoveis(){
-    //Lista todos os terrenos, casas e apartamentos
-    std::vector<Imovel *>::iterator it;
-    std::string saida;
-
-
-    std::cout << "\t=========APARTAMENTOS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
-    {
-        if((*it)->getTipo() == TIPO_APARTAMENTO)
-        {
-
-            std::cout << "Descricao: " << ((Apartamento *)*it)->getDescricao() << "\n";
-            std::cout << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
-            std::cout << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
-            std::cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
-        }
-    }
-   
-    std::cout << "\t=========TERRENOS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
-    {
-        if((*it)->getTipo() == TIPO_TERRENO)
-        {
-
-            std::cout << "Descricao: " << ((Terreno *)*it)->getDescricao() << "\n";;
-            std::cout << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
-            std::cout << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
-            std::cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
-        }
-    }
-
-    std::cout << "\t=========CASAS=========\n";
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
-    {
-        if((*it)->getTipo() == TIPO_CASA)
-        {         
-
-            std::cout << "Descricao: " << ((Casa *)*it)->getDescricao() << "\n";
-            std::cout << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
-            std::cout << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
-            std::cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
-        }
-    }
-}
+    --Realmente.
 */
 
