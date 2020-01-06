@@ -20,10 +20,10 @@ int main()
 
     imobiliaria.getImoveis();
 
-    imobiliaria.cadastrarCasa();
+    //imobiliaria.cadastrarCasa();
 
-    imobiliaria.getImoveis();
     imobiliaria.salvarCasas();
+    imobiliaria.buscarPorBairro("nada");
 
     
     return 0;

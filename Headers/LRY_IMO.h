@@ -5,6 +5,9 @@
 #include "../Headers/Terreno.h"
 #include "../Headers/Casa.h"
 #include <vector>
+#include <string>
+#include <locale>
+#include <iostream>
 
 #define VENDA 1
 #define ALUGUEL 2
@@ -32,6 +35,8 @@ public:
     void salvarCasas();
     void salvarTerrenos();
     void salvarImoveis();
+    std::string maiusculo(std::string frase);
+    void buscarPorBairro(std::string bairro);
     
 
     std::string toString();
