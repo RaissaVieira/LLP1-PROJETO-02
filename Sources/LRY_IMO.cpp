@@ -1,6 +1,7 @@
 #include "../Headers/LRY_IMO.h"
 #include <iostream>
 #include <fstream>
+#include<bits/stdc++.h>
 
 #define TIPO_APARTAMENTO 1
 #define TIPO_CASA 2
@@ -598,12 +599,8 @@ void LRY_IMO::listarTerreno()
 }
 
 std::string LRY_IMO::maiusculo(std::string frase){
-    std::locale loc;
 
-    for (std::string::size_type i=0; i<frase.length(); ++i){
-        frase = std::toupper(frase[i],loc);
-    }
-
+    transform(frase.begin(), frase.end(), frase.begin(), ::toupper); 
     return frase;
 }
 
@@ -622,7 +619,7 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
         if((*it)->getTipo() == TIPO_APARTAMENTO){
-            if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
+            if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {
                 std::cout << "\tApartamento " << ++a << "\n";
                 cout << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
@@ -647,7 +644,8 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     {
         if((*it)->getTipo() == TIPO_TERRENO){
 
-            if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
+            //if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
+            if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {
                 std::cout << "\tTerreno " << ++t << "\n";
                 cout << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
@@ -668,7 +666,8 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     {
         if((*it)->getTipo() == TIPO_CASA){
 
-            if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
+            //if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
+            if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {   
                 std::cout << "\tCasa " << ++c << "\n";     
                 cout << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
