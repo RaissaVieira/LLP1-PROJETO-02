@@ -14,18 +14,18 @@ int main()
     //Fazendo alguns testes
     LRY_IMO imobiliaria;
 
-    imobiliaria.lerCasasSalvas();
-    imobiliaria.lerApartamentosSalvos();
-    imobiliaria.lerTerrenosSalvos();
+    imobiliaria.lerImoveisSalvos();
 
-    imobiliaria.getImoveis();
 
-    //imobiliaria.cadastrarCasa();
+    imobiliaria.listarApartamento();
+    imobiliaria.listarCasa();
+    imobiliaria.listarTerreno();
 
-    //imobiliaria.salvarCasas();
-    //imobiliaria.buscarPorBairro();
-    //imobiliaria.buscarPorCidade();
-    imobiliaria.buscarPorValor();
+    imobiliaria.cadastrarTerreno();
+
+    imobiliaria.salvarImoveis();
+
+    
 
     
     return 0;

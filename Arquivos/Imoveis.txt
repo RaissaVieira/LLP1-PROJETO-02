@@ -1,0 +1,125 @@
+2
+Aluga-se casa coisada
+2
+700
+Caixa Prego
+Bairro dos Assaltantes
+999777
+Rua do Abestalhado Lenu
+171
+3
+5
+300
+298
+2
+Vende-se casinha
+1
+240000
+Leigolandia
+Qualquer
+7600550
+Rua dos Tolos
+0
+3
+3
+200
+198
+2
+Vende-se casa em Recife
+1
+200000
+Recife
+Boa Vista
+800549
+Rua dos Corais
+44
+2
+3
+200
+198
+1
+Aluga-se este AP esculhambado
+2
+400
+Baixa da Égua
+Bairro Fulerage
+780546872
+Rua do Abestalhado Lendo de Novo
+98
+Nascente Sul
+3
+200
+2
+200
+1
+Vende-se Apartamento
+1
+230000
+Joao Pessoa
+Altiplano
+7878778
+Rua dos Barões Estribados
+22
+Nascente Sul
+5
+700
+3
+330
+1
+Aluga-se AP
+2
+300
+Joao Pessoa
+Centro
+540874
+Rua dos Qualqueres
+87
+Nascente Norte
+3
+20
+1
+200
+3
+Vende-se Terreno Lascado
+1
+100000
+Bananais de Caju
+Bairro das Tapiocas Formosas
+547879
+Rua do Abestalhado Lendo
+97
+300
+3
+Vendo Terreno
+1
+276000
+Recife
+Boa Vista
+7068774
+Rua dos Leigos
+87
+300
+1
+Aluga-se apartamento no Geisel
+2
+560
+Joao Pessoa
+Geisel
+8005673
+Rua dos Alfinetes
+86
+Nascente Sul
+3
+200
+2
+200
+3
+Vendo Terrenuzim 
+1
+34000
+Joao Pessoa
+Mangabeira
+708970455
+Rua das Arvores Dengosas
+87
+300
