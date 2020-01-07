@@ -39,7 +39,9 @@ public:
     void salvarTerrenos();
     void salvarImoveis();
     std::string maiusculo(std::string frase);
-    void buscarPorBairro(std::string bairro);
+    void buscarPorBairro();
+    void buscarPorCidade();
+    void buscarPorValor();
     void removerImovel();
 
 

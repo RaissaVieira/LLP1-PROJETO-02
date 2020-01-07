@@ -18,12 +18,14 @@ int main()
     imobiliaria.lerApartamentosSalvos();
     imobiliaria.lerTerrenosSalvos();
 
-    //imobiliaria.getImoveis();
+    imobiliaria.getImoveis();
 
     //imobiliaria.cadastrarCasa();
 
     //imobiliaria.salvarCasas();
-    imobiliaria.buscarPorBairro("nada");
+    //imobiliaria.buscarPorBairro();
+    //imobiliaria.buscarPorCidade();
+    imobiliaria.buscarPorValor();
 
     
     return 0;

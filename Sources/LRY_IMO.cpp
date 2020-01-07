@@ -517,7 +517,6 @@ void LRY_IMO::listarTipoVenda()
 
 void LRY_IMO::listarCasa()
 {
-
     vector<Imovel *>::iterator it;
     string saida;
     int i=1;
@@ -604,7 +603,7 @@ std::string LRY_IMO::maiusculo(std::string frase){
     return frase;
 }
 
-void LRY_IMO::buscarPorBairro(std::string bairro){
+void LRY_IMO::buscarPorBairro(){
     std::string buscar;
     std::locale loc;
 
@@ -644,7 +643,6 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     {
         if((*it)->getTipo() == TIPO_TERRENO){
 
-            //if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
             if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {
                 std::cout << "\tTerreno " << ++t << "\n";
@@ -666,7 +664,6 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     {
         if((*it)->getTipo() == TIPO_CASA){
 
-            //if(maiusculo((*it)->getEndereco().getBairro()) == maiusculo(buscar))
             if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {   
                 std::cout << "\tCasa " << ++c << "\n";     
@@ -686,6 +683,171 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
         }
     }
 
+}
+void LRY_IMO::buscarPorCidade(){
+    std::string buscar;
+    std::locale loc;
+
+    cout << "Digite o nome da cidade que deseja procurar: ";
+    std::getline(std::cin,buscar);
+
+    std::vector<Imovel *>::iterator it;
+    int a , t, c;
+    a=t=c=0;
+
+    std::cout << "\t=========APARTAMENTOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
+    {
+        if((*it)->getTipo() == TIPO_APARTAMENTO){
+            if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
+            {
+                std::cout << "\tApartamento " << ++a << "\n";
+                cout << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Posição: " << ((Apartamento *)*it)->getPosicao()<< "\n";
+                cout << "Número de Quartos: " << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
+                cout << "Valor do Condominio: " << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
+                cout << "Vagas de Garagem: " << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
+                cout << "Área: " << ((Apartamento *)*it)->getArea() << "\n";
+            }
+        }
+    }
+   
+    std::cout << "\t=========TERRENOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO){
+
+            if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
+            {
+                std::cout << "\tTerreno " << ++t << "\n";
+                cout << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Área : " << ((Terreno *)*it)->getArea() << "\n";
+            }
+        }
+    }
+
+    std::cout << "\t=========CASAS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA){
+
+            if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
+            {   
+                std::cout << "\tCasa " << ++c << "\n";     
+                cout << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Casa *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Casa *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Número de Pavimentos: " << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
+                cout << "Número de Quartos: " << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
+                cout << "Área do Terreno: " << ((Casa *)*it)->getAreaDoTerreno() << "\n";
+                cout << "Área Construída: " << ((Casa *)*it)->getAreaConstruida() << "\n";
+            }
+        }
+    }
+
+}
+
+void LRY_IMO::buscarPorValor(){
+    double buscar;
+
+    cout << "Digite o valor que deseja procurar: ";
+    cin >> buscar;
+
+    std::vector<Imovel *>::iterator it;
+    int a , t, c;
+    a=t=c=0;
+
+    std::cout << "\t=========APARTAMENTOS=========\n";
+    cout << "\n\tApartamentos com valores MENORES ao desejado: \n\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
+    {
+        if((*it)->getTipo() == TIPO_APARTAMENTO){
+            
+            if((*it)->getValor() < buscar)
+            {
+                std::cout << "\tApartamento " << ++a << "\n";
+                cout << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Posição: " << ((Apartamento *)*it)->getPosicao()<< "\n";
+                cout << "Número de Quartos: " << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
+                cout << "Valor do Condominio: " << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
+                cout << "Vagas de Garagem: " << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
+                cout << "Área: " << ((Apartamento *)*it)->getArea() << "\n";
+            }
+        }
+    }
+   
+    std::cout << "\t=========TERRENOS=========\n";
+    cout << "\n\tTerrenos com valores MENORES ao desejado: \n\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO){
+
+            if((*it)->getValor() < buscar)
+            {
+                std::cout << "\tTerreno " << ++t << "\n";
+                cout << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Área : " << ((Terreno *)*it)->getArea() << "\n";
+            }
+        }
+    }
+
+    std::cout << "\t=========CASAS=========\n";
+    cout << " \n\tCasas com valores MENORES ao desejado: \n\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA){
+
+            if((*it)->getValor() < buscar)
+            {   
+                std::cout << "\tCasa " << ++c << "\n";     
+                cout << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
+                cout << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                cout << "Valor: " << ((Casa *)*it)->getValor() << "\n";
+                cout << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
+                cout << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+                cout << "CEP: " << ((Casa *)*it)->getEndereco().getCEP() << "\n";
+                cout << "Logradouro: " << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
+                cout << "Número: " << ((Casa *)*it)->getEndereco().getNumero() << "\n";
+                cout << "Número de Pavimentos: " << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
+                cout << "Número de Quartos: " << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
+                cout << "Área do Terreno: " << ((Casa *)*it)->getAreaDoTerreno() << "\n";
+                cout << "Área Construída: " << ((Casa *)*it)->getAreaConstruida() << "\n";
+            }
+        }
+    }
 }
 void LRY_IMO::removerImovel(int tipoImovel){
     if(tipoImovel==1){
