@@ -22,9 +22,12 @@ public:
     void cadastrarTerreno();
     void cadastrarCasa(); 
     void getImoveis(); //Lista todos os terrenos, casas e apartamentos
-    void listarCasa(int tipoOferta = VENDA_OU_ALUGUEL);
-    void listarTerreno(int tipoOferta = VENDA_OU_ALUGUEL);
-    void listarApartamento(int tipoOferta = VENDA_OU_ALUGUEL);
+    void listarCasaPorTipo(int tipoOferta = VENDA_OU_ALUGUEL);
+    void listarTerrenoPorTipo(int tipoOferta = VENDA_OU_ALUGUEL);
+    void listarApartamentoPorTipo(int tipoOferta = VENDA_OU_ALUGUEL);
+    void listarCasa();
+    void listarTerreno();
+    void listarApartamento();
     void listarTipoAluguel();
     void listarTipoVenda();
     void lerCasasSalvas();
@@ -37,10 +40,10 @@ public:
     void salvarImoveis();
     std::string maiusculo(std::string frase);
     void buscarPorBairro(std::string bairro);
-    
+    void removerImovel();
+
 
     std::string toString();
-
 };
 
 #endif
