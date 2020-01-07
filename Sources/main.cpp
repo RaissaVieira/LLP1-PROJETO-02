@@ -25,8 +25,8 @@ int main()
     //imobiliaria.salvarCasas();
     //imobiliaria.buscarPorBairro();
     //imobiliaria.buscarPorCidade();
-    imobiliaria.buscarPorValor();
-
+    //imobiliaria.buscarPorValor();
+    imobiliaria.removerImovel(2);
     
     return 0;
 }
