@@ -687,3 +687,26 @@ void LRY_IMO::buscarPorBairro(std::string bairro){
     }
 
 }
+void LRY_IMO::removerImovel(int tipoImovel){
+    if(tipoImovel==1){
+        listarApartamento();
+    }
+    if(tipoImovel==1){
+        listarCasa();
+    }
+    if(tipoImovel==1){
+        listarTerreno();
+    }
+    int numero;
+    std::cout<<"Digite o número do imóvel que você deseja remover: ";
+    std::cin>>numero;
+    if(tipoImovel==1){
+        listarApartamento();
+    }
+    if(tipoImovel==1){
+        listarCasa();
+    }
+    if(tipoImovel==1){
+        listarTerreno();
+    }
+}
