@@ -17,14 +17,7 @@ int main()
     imobiliaria.lerImoveisSalvos();
 
 
-    imobiliaria.listarApartamento();
-    imobiliaria.listarCasa();
-    imobiliaria.listarTerreno();
-
-    imobiliaria.cadastrarTerreno();
-
-    imobiliaria.salvarImoveis();
-
+    cout << imobiliaria.toString();
     
 
     
