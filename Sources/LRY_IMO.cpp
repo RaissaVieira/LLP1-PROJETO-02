@@ -1,7 +1,7 @@
 #include "../Headers/LRY_IMO.h"
 #include <iostream>
 #include <fstream>
-#include<bits/stdc++.h>
+#include<bits/stdc++.h> //Utilizar esta biblioteca é uma má prática de programação.
 
 #define TIPO_APARTAMENTO 1
 #define TIPO_CASA 2
@@ -14,217 +14,166 @@
 
 using namespace std; //Não é uma boa prática utilizar "using namespace..." em arquivos que não sejam o main
 
-void LRY_IMO::lerCasasSalvas()
-{
-    ifstream casas("./Arquivos/Casas.txt");
-
-    while(!casas.eof())
-    {
-        Casa *casa;
-        Endereco *end;
-        string descricao, cidade, bairro, CEP, logradouro;
-        int tipoOferta, numero, numeroDePavimentos, numeroDeQuartos;
-        double valor, areaDoTerreno, areaConstruida;
-
-        getline(casas,descricao);
-        casas>>tipoOferta;
-        casas>>valor;
-        casas.ignore();
-        getline(casas,cidade);
-        getline(casas,bairro);
-        getline(casas,CEP);
-        getline(casas,logradouro);
-        casas>>numero;
-        casas>>numeroDePavimentos;
-        casas>>numeroDeQuartos;
-        casas>>areaDoTerreno;
-        casas>>areaConstruida;
-        casas.ignore();
-
-        end = new Endereco(logradouro, numero, bairro, cidade, CEP);
-
-        casa = new Casa(descricao,tipoOferta,valor, *end, numeroDePavimentos, numeroDeQuartos, areaDoTerreno, areaConstruida);
-        casa->setTipo(2);
-        this->imoveis.push_back(casa);
-    }
-
-    casas.close();
-}
-
-void LRY_IMO::lerApartamentosSalvos()
-{
-    ifstream apartamentos("./Arquivos/Apartamentos.txt");
-
-    while(!apartamentos.eof())
-    {
-        Apartamento *ap;
-        Endereco *end;
-        string descricao, cidade, bairro, CEP, logradouro, posicao;
-        int tipoOferta, numero, vagasDeGaragem, numeroDeQuartos;
-        double valor, valorDoCondominio, area;
-
-        getline(apartamentos,descricao);
-        apartamentos>>tipoOferta;
-        apartamentos>>valor;
-        apartamentos.ignore();
-        getline(apartamentos,cidade);
-        getline(apartamentos,bairro);
-        getline(apartamentos,CEP);
-        getline(apartamentos,logradouro);
-        apartamentos>>numero;
-        apartamentos.ignore();
-        getline(apartamentos,posicao);
-        apartamentos>>numeroDeQuartos;
-        apartamentos>>valorDoCondominio;
-        apartamentos>>vagasDeGaragem;
-        apartamentos>>area;
-        apartamentos.ignore();
-
-        end = new Endereco(logradouro, numero, bairro, cidade, CEP);
-
-        ap = new Apartamento(descricao,tipoOferta,valor, *end, posicao, numeroDeQuartos, valorDoCondominio, vagasDeGaragem, area);
-        ap->setTipo(1);
-
-        this->imoveis.push_back(ap);
-    }
-    apartamentos.close();
-}
-
-void LRY_IMO::lerTerrenosSalvos()
-{
-    ifstream terrenos("./Arquivos/Terrenos.txt");
-
-    while(!terrenos.eof())
-    {
-        Terreno *ter;
-        Endereco *end;
-        string descricao, cidade, bairro, CEP, logradouro;
-        int tipoOferta, numero;
-        double valor, area;
-
-        getline(terrenos,descricao);
-        terrenos>>tipoOferta;
-        terrenos>>valor;
-        terrenos.ignore();
-        getline(terrenos,cidade);
-        getline(terrenos,bairro);
-        getline(terrenos,CEP);
-        getline(terrenos,logradouro);
-        terrenos>>numero;
-        terrenos>>area;
-        terrenos.ignore();
-
-        end = new Endereco(logradouro, numero, bairro, cidade, CEP);
-        ter = new Terreno (descricao,tipoOferta,valor, *end, area);
-        ter->setTipo(3);
-        this->imoveis.push_back(ter);
-    }
-    terrenos.close();
-}
-
 void LRY_IMO::lerImoveisSalvos()
 {
-    lerApartamentosSalvos();
-    lerCasasSalvas();
-    lerTerrenosSalvos();
-}
+    ifstream arquivoImoveis("./Arquivos/Imoveis.txt");
+    int tipoImovel; //Pode ser 1, 2 ou 3
 
-void LRY_IMO::salvarCasas()
-{
-    ofstream casas("./Arquivos/Casas.txt");
-    vector<Imovel *>::iterator it;
-    int contaCasas = 0;
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    while(!arquivoImoveis.eof())
     {
-        if((*it)->getTipo() == TIPO_CASA)
-        {        
-            if(contaCasas > 0)//Evita que se pule a primeira linha do arquivo
-            {
-                casas << "\n"; //Isto aqui serve para pular linha entre o fim dos dados de uma casa e o começo dos dados de outra.
-            } 
-            casas << ((Casa *)*it)->getDescricao() << "\n";
-            casas << ((Casa *)*it)->getTipoOferta() << "\n";
-            casas << ((Casa *)*it)->getValor() << "\n";
-            casas << ((Casa *)*it)->getEndereco().getCidade() << "\n";
-            casas << ((Casa *)*it)->getEndereco().getBairro() << "\n";
-            casas << ((Casa *)*it)->getEndereco().getCEP() << "\n";
-            casas << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
-            casas << ((Casa *)*it)->getEndereco().getNumero() << "\n";
-            casas << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
-            casas << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
-            casas << ((Casa *)*it)->getAreaDoTerreno() << "\n";
-            casas << ((Casa *)*it)->getAreaConstruida();
-            contaCasas++;
-        }
-    }
-    casas.close();
-}
+        arquivoImoveis >> tipoImovel;
+        arquivoImoveis.ignore();
 
-void LRY_IMO::salvarApartamentos()
-{
-    ofstream apartamentos("./Arquivos/Apartamentos.txt");
-    vector<Imovel *>::iterator it;
-    int contaApartamentos = 0;
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
-    {
-        if((*it)->getTipo() == TIPO_APARTAMENTO)
-        {        
-            if(contaApartamentos > 0)
-            {
-                apartamentos << "\n";//Procedimento análogo ao que ocorre no método salvarCasas().
-            }
-            apartamentos << ((Apartamento *)*it)->getDescricao() << "\n";
-            apartamentos << ((Apartamento *)*it)->getTipoOferta() << "\n";
-            apartamentos << ((Apartamento *)*it)->getValor() << "\n";
-            apartamentos << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
-            apartamentos << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
-            apartamentos << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
-            apartamentos << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
-            apartamentos << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
-            apartamentos << ((Apartamento *)*it)->getPosicao()<< "\n";
-            apartamentos << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
-            apartamentos << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
-            apartamentos << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
-            apartamentos << ((Apartamento *)*it)->getArea();
-            contaApartamentos++;
-        }
-    }
-    apartamentos.close();
-}
+        if(tipoImovel == TIPO_APARTAMENTO)
+        {
+            Apartamento *ap;
+            Endereco *end;
+            string descricao, cidade, bairro, CEP, logradouro, posicao;
+            int tipoOferta, numero, vagasDeGaragem, numeroDeQuartos;
+            double valor, valorDoCondominio, area;
 
-void LRY_IMO::salvarTerrenos()
-{
-    ofstream terrenos("./Arquivos/Terrenos.txt");
-    vector<Imovel *>::iterator it;
-    int contaTerrenos = 0;
+            getline(arquivoImoveis,descricao);
+            arquivoImoveis>>tipoOferta;
+            arquivoImoveis>>valor;
+            arquivoImoveis.ignore();
+            getline(arquivoImoveis,cidade);
+            getline(arquivoImoveis,bairro);
+            getline(arquivoImoveis,CEP);
+            getline(arquivoImoveis,logradouro);
+            arquivoImoveis>>numero;
+            arquivoImoveis.ignore();
+            getline(arquivoImoveis,posicao);
+            arquivoImoveis>>numeroDeQuartos;
+            arquivoImoveis>>valorDoCondominio;
+            arquivoImoveis>>vagasDeGaragem;
+            arquivoImoveis>>area;
+            arquivoImoveis.ignore();
 
-    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
-    {
-        if((*it)->getTipo() == TIPO_TERRENO)
-        {        
-            if(contaTerrenos > 0){
-                terrenos << "\n"; //Procedimento análogo ao que ocorre no método salvarCasas().
-            }  
-            terrenos << ((Terreno *)*it)->getDescricao() << "\n";
-            terrenos << ((Terreno *)*it)->getTipoOferta() << "\n";
-            terrenos << ((Terreno *)*it)->getValor() << "\n";
-            terrenos << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
-            terrenos << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
-            terrenos << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
-            terrenos << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
-            terrenos << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
-            terrenos << ((Terreno *)*it)->getArea();
-            contaTerrenos++;
+            end = new Endereco(logradouro, numero, bairro, cidade, CEP);
+
+            ap = new Apartamento(descricao,tipoOferta,valor, *end, posicao, numeroDeQuartos, valorDoCondominio, vagasDeGaragem, area);
+            ap->setTipo(1);
+
+            this->imoveis.push_back(ap);
+        }else if(tipoImovel == TIPO_CASA)
+        {
+            Casa *casa;
+            Endereco *end;
+            string descricao, cidade, bairro, CEP, logradouro;
+            int tipoOferta, numero, numeroDePavimentos, numeroDeQuartos;
+            double valor, areaDoTerreno, areaConstruida;
+
+            getline(arquivoImoveis,descricao);
+            arquivoImoveis>>tipoOferta;
+            arquivoImoveis>>valor;
+            arquivoImoveis.ignore();
+            getline(arquivoImoveis,cidade);
+            getline(arquivoImoveis,bairro);
+            getline(arquivoImoveis,CEP);
+            getline(arquivoImoveis,logradouro);
+            arquivoImoveis>>numero;
+            arquivoImoveis>>numeroDePavimentos;
+            arquivoImoveis>>numeroDeQuartos;
+            arquivoImoveis>>areaDoTerreno;
+            arquivoImoveis>>areaConstruida;
+            arquivoImoveis.ignore();
+
+            end = new Endereco(logradouro, numero, bairro, cidade, CEP);
+
+            casa = new Casa(descricao,tipoOferta,valor, *end, numeroDePavimentos, numeroDeQuartos, areaDoTerreno, areaConstruida);
+            casa->setTipo(2);
+            this->imoveis.push_back(casa);
+        }else if(tipoImovel == TIPO_TERRENO)
+        {
+            Terreno *ter;
+            Endereco *end;
+            string descricao, cidade, bairro, CEP, logradouro;
+            int tipoOferta, numero;
+            double valor, area;
+
+            getline(arquivoImoveis,descricao);
+            arquivoImoveis>>tipoOferta;
+            arquivoImoveis>>valor;
+            arquivoImoveis.ignore();
+            getline(arquivoImoveis,cidade);
+            getline(arquivoImoveis,bairro);
+            getline(arquivoImoveis,CEP);
+            getline(arquivoImoveis,logradouro);
+            arquivoImoveis>>numero;
+            arquivoImoveis>>area;
+            arquivoImoveis.ignore();
+
+            end = new Endereco(logradouro, numero, bairro, cidade, CEP);
+            ter = new Terreno (descricao,tipoOferta,valor, *end, area);
+            ter->setTipo(3);
+            this->imoveis.push_back(ter);
         }
+
     }
-    terrenos.close();
+
+    arquivoImoveis.close();
 }
 
 void LRY_IMO::salvarImoveis()
 {
-    salvarApartamentos();
-    salvarCasas();
-    salvarTerrenos();
+    ofstream arquivoImoveis("./Arquivos/Imoveis.txt");
+
+    vector<Imovel *>::iterator it;
+    int contaImoveis = 0;
+    
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if(contaImoveis > 0)
+        {
+            arquivoImoveis << "\n";
+        }
+
+        arquivoImoveis << (*it)->getTipo() << "\n";
+        if((*it)->getTipo() == TIPO_APARTAMENTO)
+        {        
+            arquivoImoveis << ((Apartamento *)*it)->getDescricao() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getTipoOferta() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getValor() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getEndereco().getCEP() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getEndereco().getLogradouro() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getEndereco().getNumero() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getPosicao()<< "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getNumeroDeQuartos() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getValorDoCondominio() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getVagasDeGaragem() << "\n";
+            arquivoImoveis << ((Apartamento *)*it)->getArea();
+        }else if((*it)->getTipo() == TIPO_CASA)
+        {   
+            arquivoImoveis << ((Casa *)*it)->getDescricao() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getTipoOferta() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getValor() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getEndereco().getCidade() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getEndereco().getBairro() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getEndereco().getCEP() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getEndereco().getLogradouro() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getEndereco().getNumero() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getNumeroDePavimentos() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getNumeroDeQuartos() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getAreaDoTerreno() << "\n";
+            arquivoImoveis << ((Casa *)*it)->getAreaConstruida();
+        }else if((*it)->getTipo() == TIPO_TERRENO)
+        {        
+            arquivoImoveis << ((Terreno *)*it)->getDescricao() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getTipoOferta() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getValor() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getEndereco().getCEP() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getEndereco().getLogradouro() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getEndereco().getNumero() << "\n";
+            arquivoImoveis << ((Terreno *)*it)->getArea();
+        }
+        contaImoveis++;
+    }
+    arquivoImoveis.close();
+
 }
 
 void LRY_IMO::cadastrarApartamento()
@@ -515,14 +464,13 @@ void LRY_IMO::listarTipoVenda()
     listarApartamento(VENDA);
 }
 
-
 std::string LRY_IMO::maiusculo(std::string frase){
 
     transform(frase.begin(), frase.end(), frase.begin(), ::toupper); 
     return frase;
 }
 
-    void LRY_IMO::buscarPorBairro(){
+void LRY_IMO::buscarPorBairro(){
     std::string buscar;
     std::locale loc;
 
@@ -769,25 +717,68 @@ void LRY_IMO::buscarPorValor(){
     }
 }
 void LRY_IMO::removerImovel(int tipoImovel){
-    if(tipoImovel==TIPO_APARTAMENTO){
-        listarApartamento(3);
+    if(tipoImovel==1){
+        listarApartamento();
     }
-    if(tipoImovel==TIPO_CASA){
-        listarCasa(3);
-     }
-    if(tipoImovel==TIPO_TERRENO){
-        listarTerreno(3);
+    if(tipoImovel==2){
+        listarCasa();
     }
-    string num;
+    if(tipoImovel==3){
+        listarTerreno();
+    }
+    int numero;
     std::cout<<"Digite o número do imóvel que você deseja remover: ";
-    std::cin>>num;
-    stringstream op (num);
-    int escolha = 0;
-    op>>escolha;
-    if(escolha==0){
-        std::cout<<"Para realizar a operação, tente novamente e digite um número, por favor.\n";
+    std::cin>>numero;
+    if(tipoImovel==1){
+        listarApartamento();
     }
-    else{
-
-    } 
+    if(tipoImovel==2){
+        listarCasa();
+    }
+    if(tipoImovel==3){
+        listarTerreno();
+    }
 }
+
+string LRY_IMO::toString()
+{
+    vector<Imovel *>::iterator it;
+    stringstream saida;
+    int i=1;
+
+    saida << "\t=========APARTAMENTOS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_APARTAMENTO)
+        {         
+            saida << "\t=========Apartamento "<<i<<"=========\n";
+            saida << ((Apartamento *)(*it))->toString();
+            i++;
+        }
+    }
+    i = 1;
+    saida << "\t=========CASAS=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_CASA)
+        {         
+            saida << "\t=========Casa "<<i<<"=========\n";
+            saida << ((Casa *)(*it))->toString();
+            i++;
+        }
+    }
+    i = 1;
+    saida << "\t=========TERRENO=========\n";
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
+    {
+        if((*it)->getTipo() == TIPO_TERRENO)
+        {         
+            saida << "\t=========Terreno "<<i<<"=========\n";
+            saida << ((Terreno *)(*it))->toString();
+            i++;
+        }
+    }
+
+    return saida.str();
+}
+

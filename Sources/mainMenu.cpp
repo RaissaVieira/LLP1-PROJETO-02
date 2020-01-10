@@ -3,6 +3,8 @@
 
 using namespace std;
 
+extern void MenuPrincipal();
+
 void MenuCadastro (){
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
