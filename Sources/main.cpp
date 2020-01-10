@@ -14,12 +14,10 @@ int main()
     //Fazendo alguns testes
     LRY_IMO imobiliaria;
 
-    imobiliaria.lerCasasSalvas();
-    imobiliaria.lerApartamentosSalvos();
-    imobiliaria.lerTerrenosSalvos();
+    imobiliaria.lerImoveisSalvos();
 
-    imobiliaria.getImoveis();
 
+<<<<<<< HEAD
     //imobiliaria.cadastrarCasa();
 
     //imobiliaria.salvarCasas();
@@ -27,6 +25,11 @@ int main()
     //imobiliaria.buscarPorCidade();
     //imobiliaria.buscarPorValor();
     imobiliaria.removerImovel(2);
+=======
+    cout << imobiliaria.toString();
+    
+
+>>>>>>> 5f3823f5ed53c21004bcccf1726574155a2238f6
     
     return 0;
 }
