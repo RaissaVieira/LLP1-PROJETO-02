@@ -16,8 +16,10 @@ int main()
 
     imobiliaria.lerImoveisSalvos();
 
-    imobiliaria.buscarPorDescricao();
+    //imobiliaria.buscarPorDescricao();
     
+    imobiliaria.removerImovel(1);
+    std::cout<<imobiliaria.getApartamentos();
 
     
     return 0;

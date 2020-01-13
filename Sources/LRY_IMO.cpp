@@ -470,13 +470,15 @@ void LRY_IMO::listarTipoVenda()
     cout << getApartamentos(VENDA);
 }
 
-std::string LRY_IMO::maiusculo(std::string frase){
+std::string LRY_IMO::maiusculo(std::string frase)
+{
 
     transform(frase.begin(), frase.end(), frase.begin(), ::toupper); 
     return frase;
 }
 
-void LRY_IMO::buscarPorBairro(){
+void LRY_IMO::buscarPorBairro()
+{
     std::string buscar;
     std::locale loc;
 
@@ -557,7 +559,8 @@ void LRY_IMO::buscarPorBairro(){
     }
 
 }
-void LRY_IMO::buscarPorCidade(){
+void LRY_IMO::buscarPorCidade()
+{
     std::string buscar;
     std::locale loc;
 
@@ -639,7 +642,8 @@ void LRY_IMO::buscarPorCidade(){
 
 }
 
-void LRY_IMO::buscarPorValor(){
+void LRY_IMO::buscarPorValor()
+{
     double buscar;
 
     cout << "Digite o valor que deseja procurar: ";
@@ -805,7 +809,9 @@ void LRY_IMO::buscarPorDescricao(){
 
 }
 
-void LRY_IMO::removerImovel(int tipoImovel){
+
+void LRY_IMO::removerImovel(int tipoImovel)
+{
     if(tipoImovel==1){
         cout << getApartamentos();
     }
@@ -818,15 +824,22 @@ void LRY_IMO::removerImovel(int tipoImovel){
     int numero;
     std::cout<<"Digite o número do imóvel que você deseja remover: ";
     std::cin>>numero;
-    if(tipoImovel==1){
-        cout << getApartamentos();
+
+   vector<Imovel *>::iterator it;
+   vector<Imovel *>::iterator pos;
+    int count=0;
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)
+    {
+        if((*it)->getTipo() == tipoImovel){
+            count++;
+            if(count==numero){
+                pos=it;
+            }
+
+        }
     }
-    if(tipoImovel==2){
-        cout << getCasas();
-    }
-    if(tipoImovel==3){
-        cout << getTerrenos();
-    }
+    
+    this->imoveis.erase(pos);  
 }
 
 string LRY_IMO::toString()

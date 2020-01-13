@@ -7,8 +7,8 @@ extern void MenuPrincipal();
 
 void MenuCadastro (){
     string opcao;
-    cout<<"LRY Imobiliária"<<endl;
-    cout<<"Cadastro"<<endl;
+    cout<<"------------------LRY Imobiliária------------"<<endl;
+    cout<<"\tCadastro"<<endl;
     cout<<"\t1-Cadastrar Casa"<<endl;
     cout<<"\t2-Cadastrar Apartamento"<<endl;
     cout<<"\t3-Cadastrar Terreno"<<endl;
@@ -26,7 +26,7 @@ void MenuCadastro (){
         MenuCadastro();
         break;
     case 1:
-        cout<<"Cadastro"<<endl;
+        
         break;
     case 2:
         cout<<"Listar"<<endl;
@@ -39,11 +39,11 @@ void MenuCadastro (){
         break;
     }
 }
-void MenuPrincipal(){
+int MenuPrincipal(){
     string opcao;
-    cout<<"LRY Imobiliária"<<endl;
+    cout<<"------------------LRY Imobiliária------------"<<endl;
     cout<<"\t1-Cadastro"<<endl;
-    cout<<"\t2-Listar"<<endl;
+    cout<<"\ts2-Listar"<<endl;
     cout<<"\t3-Buscar"<<endl;
     cout<<"\t4-Remover"<<endl;
     cout<<"\t5-Editar"<<endl;
@@ -81,5 +81,6 @@ void MenuPrincipal(){
 }
 int main (void){
     setlocale(LC_ALL,"portuguese");
+    LRY_IMO *imobiliaria = new LRY_IMO();
     MenuPrincipal();
 }
