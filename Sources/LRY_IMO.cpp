@@ -639,7 +639,8 @@ void LRY_IMO::buscarPorCidade(){
 
 }
 
-void LRY_IMO::buscarPorValor(){
+void LRY_IMO::buscarPorValor()
+{
     double buscar;
 
     cout << "Digite o valor que deseja procurar: ";
@@ -723,7 +724,8 @@ void LRY_IMO::buscarPorValor(){
     }
 }
 
-void LRY_IMO::buscarPorDescricao(){
+void LRY_IMO::buscarPorDescricao()
+{
     std::string buscar;
     std::locale loc;
 
@@ -805,7 +807,8 @@ void LRY_IMO::buscarPorDescricao(){
 
 }
 
-void LRY_IMO::removerImovel(int tipoImovel){
+void LRY_IMO::removerImovel(int tipoImovel)
+{
     if(tipoImovel==1){
         cout << getApartamentos();
     }
@@ -835,7 +838,7 @@ string LRY_IMO::toString()
     stringstream saida;
     int i=1;
 
-    saida << "\t=========APARTAMENTOS=========\n";
+    saida << "\t/=========APARTAMENTOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
         if((*it)->getTipo() == TIPO_APARTAMENTO)
