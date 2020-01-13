@@ -22,9 +22,9 @@ public:
     void cadastrarTerreno();
     void cadastrarCasa(); 
     void getImoveis(); //Lista todos os terrenos, casas e apartamentos
-    void listarCasa(int tipoOferta = VENDA_OU_ALUGUEL);
-    void listarTerreno(int tipoOferta = VENDA_OU_ALUGUEL);
-    void listarApartamento(int tipoOferta = VENDA_OU_ALUGUEL);
+    string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
+    string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
+    string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
     void listarTipoAluguel();
     void listarTipoVenda();
     void lerCasasSalvas();

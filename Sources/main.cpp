@@ -17,19 +17,9 @@ int main()
     imobiliaria.lerImoveisSalvos();
 
 
-<<<<<<< HEAD
-    //imobiliaria.cadastrarCasa();
-
-    //imobiliaria.salvarCasas();
-    //imobiliaria.buscarPorBairro();
-    //imobiliaria.buscarPorCidade();
-    //imobiliaria.buscarPorValor();
-    imobiliaria.removerImovel(2);
-=======
-    cout << imobiliaria.toString();
+    imobiliaria.listarTipoAluguel();
     
 
->>>>>>> 5f3823f5ed53c21004bcccf1726574155a2238f6
     
     return 0;
 }
