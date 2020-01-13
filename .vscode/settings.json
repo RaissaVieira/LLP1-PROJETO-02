@@ -62,6 +62,13 @@
         "thread": "cpp",
         "regex": "cpp",
         "typeindex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "codecvt": "cpp",
+        "cuchar": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "shared_mutex": "cpp"
     }
 }

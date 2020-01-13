@@ -16,8 +16,7 @@ int main()
 
     imobiliaria.lerImoveisSalvos();
 
-
-    imobiliaria.listarTipoAluguel();
+    imobiliaria.buscarPorDescricao();
     
 
     
