@@ -186,7 +186,7 @@ void LRY_IMO::cadastrarApartamento()
 
     cout<<"Descrição: ";
     getline(cin,descricao);
-    cout<<"Tipo de oferta: ";
+    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
     cin>>tipoOferta;
     cout<<"Valor: ";
     cin>>valor;
@@ -235,7 +235,7 @@ void LRY_IMO::cadastrarTerreno ()
 
     cout<<"Descrição: ";
     getline(std::cin,descricao);
-    cout<<"Tipo de oferta: ";
+    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
     cin>>tipoOferta;
     cout<<"Valor: ";
     cin>>valor;
@@ -273,7 +273,7 @@ void LRY_IMO::cadastrarCasa()
 
     cout<<"Descrição: ";
     getline(cin,descricao);
-    cout<<"Tipo de oferta: ";
+    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
     cin>>tipoOferta;
     cout<<"Valor: ";
     cin>>valor;

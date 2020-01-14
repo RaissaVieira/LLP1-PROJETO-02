@@ -7,6 +7,7 @@ using namespace std;
 LRY_IMO imobiliaria;
 
 extern void MenuPrincipal();
+extern void novaOperacao();
 
 void novaOperacao(){
     printf("\e[H\e[2J"); 
@@ -14,7 +15,7 @@ void novaOperacao(){
 
     cout << "Deseja realizar uma nova operacao?\n";
     cout << "\t1-SIM\n";
-    cout << "\t1-NAO\n";
+    cout << "\t2-NAO\n";
     cout<<"\tDigite a operação que deseja ser realizada: ";
     cin>>opcao;
     cin.ignore();
@@ -113,15 +114,15 @@ void MenuListar (){
         break;
     case 1:
         printf("\e[H\e[2J"); 
-        imobiliaria.getCasas();
+        std::cout<<imobiliaria.getCasas(3);
         break;
     case 2:
         printf("\e[H\e[2J"); 
-        imobiliaria.getApartamentos();
+        std::cout<<imobiliaria.getApartamentos(3);
         break;
     case 3:
         printf("\e[H\e[2J"); 
-        imobiliaria.getTerrenos();
+        std::cout<<imobiliaria.getTerrenos(3);
         break;
     case 4:
         imobiliaria.getImoveis();
@@ -161,22 +162,22 @@ void MenuBuscar (){
     case 1:
         printf("\e[H\e[2J"); 
         imobiliaria.buscarPorBairro();
-        novaOperacao();
+        
         break;
     case 2:
         printf("\e[H\e[2J"); 
         imobiliaria.buscarPorCidade();
-        novaOperacao();
+        
         break;
     case 3:
         printf("\e[H\e[2J"); 
         imobiliaria.buscarPorValor();
-        novaOperacao();
+        
         break;
     case 4:
         printf("\e[H\e[2J"); 
         imobiliaria.buscarPorDescricao();
-        novaOperacao();
+        
     case 5: 
         printf("\e[H\e[2J"); 
         MenuPrincipal();
@@ -276,6 +277,7 @@ void MenuPrincipal(){
     }
 }
 int main (void){
+    imobiliaria.lerImoveisSalvos();
     setlocale(LC_ALL,"portuguese");
     MenuPrincipal();
 }
