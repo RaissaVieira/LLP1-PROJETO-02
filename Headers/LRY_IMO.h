@@ -40,7 +40,7 @@ public:
     std::string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
     std::string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
     std::string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
-    std::string buscarPorBairro(std::string buscar);
+    std::string buscarPorBairro();
     std::string buscarPorCidade();
     std::string buscarPorValor();
     std::string buscarPorDescricao();

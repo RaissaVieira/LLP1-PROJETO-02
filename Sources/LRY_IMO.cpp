@@ -476,7 +476,7 @@ std::string LRY_IMO::maiusculo(std::string frase)
     transform(frase.begin(), frase.end(), frase.begin(), ::toupper); 
     return frase;
 }
-std::string LRY_IMO::buscarPorBairro(std::string buscar)
+std::string LRY_IMO::buscarPorBairro()
 {
     std::string buscar;
     std::locale loc;

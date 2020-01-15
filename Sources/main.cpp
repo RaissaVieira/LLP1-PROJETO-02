@@ -215,9 +215,8 @@ void MenuBuscar ()
         
         break;
     case 2:
-        printf("\e[H\e[2J"); 
+        printf("\e[H\e[2J");
         cout<<imobiliaria.buscarPorCidade();
-        
         break;
     case 3:
         printf("\e[H\e[2J"); 
