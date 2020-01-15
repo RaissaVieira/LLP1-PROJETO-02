@@ -10,7 +10,7 @@ extern void MenuPrincipal();
 extern void novaOperacao();
 
 void novaOperacao(){
-    printf("\e[H\e[2J"); 
+    //printf("\e[H\e[2J"); 
     string opcao;
 
     cout << "Deseja realizar uma nova operacao?\n";
