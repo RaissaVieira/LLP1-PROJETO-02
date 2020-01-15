@@ -35,15 +35,15 @@ public:
     void removerImovel(int tipoImovel);
 
 
-    string maiusculo(std::string frase);
-    string toString();
-    string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
-    string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
-    string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
-    string LRY_IMO::buscarPorBairro(string buscar)
-    string buscarPorCidade();
-    string buscarPorValor();
-    string buscarPorDescricao();
+    std::string maiusculo(std::string frase);
+    std::string toString();
+    std::string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
+    std::string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
+    std::string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
+    std::string buscarPorBairro(std::string buscar);
+    std::string buscarPorCidade();
+    std::string buscarPorValor();
+    std::string buscarPorDescricao();
 };
 
 #endif

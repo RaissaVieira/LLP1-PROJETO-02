@@ -202,19 +202,16 @@ void MenuBuscar ()
 
     stringstream op (opcao);
     int escolha = 0;
-    op>>escolha;
+    op>>escolha; 
 
-    switchje (escolha)
+    switch (escolha)
     {
     case 0:
         MenuBuscar();
         break;
     case 1:
         printf("\e[H\e[2J");
-        string buscar; 
-        cout << "Digite o nome do bairro que deseja procurar: ";
-        std::getline(std::cin,buscar);
-        cout<<imobiliaria.buscarPorBairro(buscar);
+        cout<<imobiliaria.buscarPorBairro();
         
         break;
     case 2:

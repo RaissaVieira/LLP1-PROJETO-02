@@ -478,25 +478,23 @@ std::string LRY_IMO::maiusculo(std::string frase)
 }
 std::string LRY_IMO::buscarPorBairro(std::string buscar)
 {
-    //std::string buscar;
+    std::string buscar;
     std::locale loc;
     stringstream saida;
 
-    /*cout << "Digite o nome do bairro que deseja procurar: ";
-    std::getline(std::cin,buscar);*/
+    cout << "Digite o nome do bairro que deseja procurar: ";
+    std::getline(std::cin,buscar);
 
     std::vector<Imovel *>::iterator it;
-    int a , t, c;
-    a=t=c=0;
+    int a=0, t=0, c=0;
 
     saida << "\t=========APARTAMENTOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        a++;
         if((*it)->getTipo() == TIPO_APARTAMENTO){
+            a++;
             if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {
-                //std::cout << "\tApartamento " << ++a << "\n";
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
                 saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
@@ -518,9 +516,8 @@ std::string LRY_IMO::buscarPorBairro(std::string buscar)
     saida << "\t=========TERRENOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
-        t++;
         if((*it)->getTipo() == TIPO_TERRENO){
-            
+            t++;
             if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {
                 saida << "\tTerreno " << t << "\n";
@@ -540,9 +537,8 @@ std::string LRY_IMO::buscarPorBairro(std::string buscar)
     saida << "\t=========CASAS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        c++;
         if((*it)->getTipo() == TIPO_CASA){
-
+            c++;
             if((maiusculo((*it)->getEndereco().getBairro())).find(maiusculo(buscar)) != string::npos )
             {   
                 saida << "\tCasa " << c << "\n";     
@@ -579,8 +575,9 @@ std::string LRY_IMO::buscarPorCidade()
     saida << "\t=========APARTAMENTOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        a++;
+        
         if((*it)->getTipo() == TIPO_APARTAMENTO){
+            a++;
             if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
             {
                 saida << "\tApartamento " << a << "\n";
@@ -604,9 +601,9 @@ std::string LRY_IMO::buscarPorCidade()
     saida << "\t=========TERRENOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
-        t++;
+        
         if((*it)->getTipo() == TIPO_TERRENO){
-
+            t++;
             if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
             {
                 saida << "\tTerreno " << t << "\n";
@@ -626,9 +623,9 @@ std::string LRY_IMO::buscarPorCidade()
     saida << "\t=========CASAS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        c++;
+        
         if((*it)->getTipo() == TIPO_CASA){
-
+            c++;
             if((maiusculo((*it)->getEndereco().getCidade())).find(maiusculo(buscar)) != string::npos )
             {   
                 saida << "\tCasa " << c << "\n";     
@@ -665,9 +662,9 @@ std::string LRY_IMO::buscarPorValor()
     saida << "\n\tApartamentos com valores MENORES ao desejado: \n\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        a++;
+        
         if((*it)->getTipo() == TIPO_APARTAMENTO){
-            
+            a++;
             if((*it)->getValor() < buscar)
             {
                 saida << "\tApartamento " << a << "\n";
@@ -692,9 +689,9 @@ std::string LRY_IMO::buscarPorValor()
     saida << "\n\tTerrenos com valores MENORES ao desejado: \n\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
-        t++;
+        
         if((*it)->getTipo() == TIPO_TERRENO){
-
+            t++;
             if((*it)->getValor() < buscar)
             {
                 saida << "\tTerreno " << t << "\n";
@@ -715,9 +712,9 @@ std::string LRY_IMO::buscarPorValor()
     saida << " \n\tCasas com valores MENORES ao desejado: \n\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        c++;
+        
         if((*it)->getTipo() == TIPO_CASA){
-
+            c++;
             if((*it)->getValor() < buscar)
             {   
                 saida << "\tCasa " << c << "\n";     
@@ -826,43 +823,7 @@ std::string LRY_IMO::buscarPorDescricao()
 }
 void LRY_IMO::removerImovel(int tipoImovel)
 {
-    printf("\e[H\e[2J"); 
-    string opcao;
-    cout<<"LRY Imobiliária"<<endl;
-    cout<<"BUSCAR O IMÓVEL PARA REMOVER POR:"<<endl;
-    cout<<"\t1-Buscar por bairro"<<endl;
-    cout<<"\t2-Buscar por cidade"<<endl;
-    cout<<"\t3-Buscar por valor"<<endl;
-    cout<<"\t4-Buscar por descricao"<<endl;
-    cout<<"\tDigite a operação que deseja ser realizada: ";
-    cin>>opcao;
-    cin.ignore();
-
-    stringstream op (opcao);
-    int escolha = 0;
-    op>>escolha;
-
-    switch (escolha)
-    {
-    case 1:
-        printf("\e[H\e[2J"); 
-        buscarPorBairro();
-        
-        break;
-    case 2:
-        printf("\e[H\e[2J"); 
-        buscarPorCidade();
-        
-        break;
-    case 3:
-        printf("\e[H\e[2J"); 
-        buscarPorValor();
-        
-        break;
-    case 4:
-        printf("\e[H\e[2J"); 
-        buscarPorDescricao();
-    }
+    
 
     if(tipoImovel==1){
         cout << getApartamentos();
