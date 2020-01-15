@@ -22,6 +22,11 @@ public:
     double getAreaDoTerreno();
     double getAreaConstruida();
     string toString();
+
+    void setNumeroDePavimentos(int numeroDePavimentos);
+    void setNumeroDeQuartos(int numeroDeQuartos);
+    void setAreaDoTerreno(double areaDoTerreno);
+    void setAreaConstruida(double areaConstruida);
 };
 
 

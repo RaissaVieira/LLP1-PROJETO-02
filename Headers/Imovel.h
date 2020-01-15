@@ -20,6 +20,10 @@ public:
     int getTipo();
 
     void setTipo(int tipo);
+    void setDescricao(std::string descricao);
+    void setValor(int valor);
+    void setEndereco(Endereco endereco);
+    void setTipoOferta(int tipoOferta);
 
 };
 

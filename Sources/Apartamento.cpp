@@ -2,6 +2,26 @@
 #include <iomanip>
 #include <sstream>
 
+void Apartamento::setPosicao(std::string posicao)
+{
+    this->posicao = posicao;
+}
+void Apartamento::setNumeroDeQuartos(int numeroDeQuartos)
+{
+    this->numeroDeQuartos = numeroDeQuartos;
+}
+void Apartamento::setValorDoCondominio(double valorDoCondominio)
+{
+    this->valorDoCondominio = valorDoCondominio;
+}
+void Apartamento::setVagasDeGaragem(int vagasDeGaragem)
+{
+    this->vagasDeGaragem = vagasDeGaragem;
+}
+void Apartamento::setArea(double area)
+{
+    this->area = area;
+}
 
 Apartamento::Apartamento(std::string descricao, int tipoOferta, int valor, Endereco endereco,std::string posicao, 
 int numeroDeQuartos, double valorDoCondominio, int vagasDeGaragem,double area) : Imovel(descricao, tipoOferta, valor, endereco)

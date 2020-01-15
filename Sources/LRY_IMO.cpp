@@ -14,6 +14,345 @@
 
 using namespace std; //Não é uma boa prática utilizar "using namespace..." em arquivos que não sejam o main
 
+void LRY_IMO::editarImoveis(int tipoImovel)
+{
+    switch(tipoImovel)
+    {
+        case TIPO_APARTAMENTO: cout << getApartamentos(); break;
+        case TIPO_CASA:        cout << getCasas(); break;
+        case TIPO_TERRENO:     cout << getTerrenos(); 
+    }
+    int numero, count = 0;
+    cout<<"Digite o número do imóvel que você deseja editar: ";
+    cin>>numero;
+    cin.ignore();
+
+    vector<Imovel *>::iterator it, alvo;
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)
+    {
+        if((*it)->getTipo() == tipoImovel){
+            count++;
+            if(count==numero){
+                alvo=it;
+            }
+
+        }
+    }
+    cout << "Pressione ENTER para manter os valores atuais.\n";
+    if(tipoImovel == TIPO_APARTAMENTO)
+    {
+        Apartamento *ap;
+        Endereco *end;
+        string descricao, cidade, bairro, CEP, logradouro, posicao,
+        tipoOferta, numero, vagasDeGaragem, numeroDeQuartos,
+        valor, valorDoCondominio, area;
+        stringstream novoApartamento;
+        
+        cout << "Descrição: ";
+        getline(cin,descricao);
+        if(descricao.empty())
+            novoApartamento << (*alvo)->getDescricao() << endl;
+        else
+            novoApartamento << descricao << endl;
+        cout << "Tipo de oferta: ";
+        getline(cin,tipoOferta);
+        if(tipoOferta.empty())
+            novoApartamento << (*alvo)->getTipoOferta()<< endl;
+        else
+            novoApartamento << tipoOferta << endl;
+        cout << "Valor: ";
+        getline(cin,valor);
+        if(valor.empty())
+            novoApartamento << (*alvo)->getValor()<< endl;
+        else
+            novoApartamento << valor << endl;
+        cout << "Cidade: ";
+        getline(cin,cidade);
+        if(cidade.empty())
+            novoApartamento << (*alvo)->getEndereco().getCidade() << endl;
+        else
+            novoApartamento << cidade << endl;
+        cout << "Bairro: ";
+        getline(cin,bairro);
+        if(bairro.empty())
+            novoApartamento << (*alvo)->getEndereco().getBairro() << endl;
+        else
+            novoApartamento << bairro << endl;
+        cout << "CEP: ";
+        getline(cin,CEP);
+        if(CEP.empty())
+            novoApartamento << (*alvo)->getEndereco().getCEP() << endl;
+        else
+            novoApartamento << CEP << endl;
+        cout << "Logradouro: ";
+        getline(cin,logradouro);
+        if(logradouro.empty())
+            novoApartamento << (*alvo)->getEndereco().getLogradouro() << endl;
+        else
+            novoApartamento << logradouro << endl;
+        cout << "Número: ";
+        getline(cin,numero);
+        if(numero.empty())
+            novoApartamento << (*alvo)->getEndereco().getNumero() << endl;
+        else
+            novoApartamento << numero << endl;
+        cout << "Posição: ";
+        getline(cin,posicao);
+        if(posicao.empty())
+            novoApartamento << ((Apartamento *)(*alvo))->getPosicao() << endl;
+        else
+            novoApartamento << posicao << endl;
+        cout << "Número de Quartos: ";
+        getline(cin,numeroDeQuartos);
+        if(numeroDeQuartos.empty())
+            novoApartamento << ((Apartamento *)(*alvo))->getNumeroDeQuartos() << endl;
+        else
+            novoApartamento << numeroDeQuartos << endl;
+        cout << "Valor do Condomínio: ";
+        getline(cin,valorDoCondominio);
+        if(valorDoCondominio.empty())
+            novoApartamento << ((Apartamento *)(*alvo))->getValorDoCondominio() << endl;
+        else
+            novoApartamento << valorDoCondominio << endl;
+        cout << "Vagas de Garagem: ";
+        getline(cin,vagasDeGaragem);
+        if(vagasDeGaragem.empty())
+            novoApartamento << ((Apartamento *)(*alvo))->getVagasDeGaragem() << endl;
+        else
+            novoApartamento << vagasDeGaragem << endl;
+        cout << "Área: ";
+        getline(cin,area);
+        if(area.empty())
+            novoApartamento << ((Apartamento *)(*alvo))->getArea() << endl;
+        else
+            novoApartamento << area << endl;
+        
+        int tipoOfertaInt, numeroInt, vagasDeGaragemInt, numeroDeQuartosInt;
+        double areaDoub, valorDoub, valorDoCondominioDoub;
+
+        getline(novoApartamento, descricao);
+        (*alvo)->setDescricao(descricao);
+        novoApartamento >> tipoOfertaInt;
+        (*alvo)->setTipoOferta(tipoOfertaInt);
+        novoApartamento >>  valorDoub;
+        (*alvo)->setValor(valorDoub);
+        novoApartamento.ignore();
+        getline(novoApartamento, cidade);
+        getline(novoApartamento, bairro);
+        getline(novoApartamento, CEP);
+        getline(novoApartamento, logradouro);
+        novoApartamento >> numeroInt;
+        novoApartamento.ignore();
+        end = new Endereco(logradouro, numeroInt, bairro, cidade, CEP);
+        (*alvo)->setEndereco(*end);
+        getline(novoApartamento, posicao);
+        ((Apartamento *)(*alvo))->setPosicao(posicao);
+        novoApartamento >> numeroDeQuartosInt;
+        ((Apartamento *)(*alvo))->setNumeroDeQuartos(numeroDeQuartosInt);
+        novoApartamento >> valorDoCondominioDoub;
+        ((Apartamento *)(*alvo))->setValorDoCondominio(valorDoCondominioDoub);
+        novoApartamento >> vagasDeGaragemInt;
+        ((Apartamento *)(*alvo))->setVagasDeGaragem(vagasDeGaragemInt);        
+        novoApartamento >> areaDoub;
+        ((Apartamento *)(*alvo))->setArea(areaDoub);
+        
+
+    }else if(tipoImovel == TIPO_CASA)
+    {
+        Casa *casa;
+        Endereco *end;
+        string descricao, cidade, bairro, CEP, logradouro,
+        tipoOferta, numero, numeroDePavimentos, numeroDeQuartos,
+        valor, areaDoTerreno, areaConstruida;
+        stringstream novaCasa;
+
+        cout<<"Descrição: ";
+        getline(cin,descricao);
+        if(descricao.empty())
+            novaCasa << (*alvo)->getDescricao() << endl;
+        else
+            novaCasa << descricao << endl;
+        cout<<"Tipo de oferta: ";
+        getline(cin, tipoOferta);
+        if(tipoOferta.empty())
+            novaCasa << (*alvo)->getTipoOferta() << endl;
+        else
+            novaCasa << tipoOferta << endl;
+        cout<<"Valor: ";
+        getline(cin, valor);
+        if(valor.empty())
+            novaCasa << (*alvo)->getValor() << endl;
+        else
+            novaCasa << valor << endl;
+        cout<<"Cidade: ";
+        getline(cin,cidade);
+        if(cidade.empty())
+            novaCasa << (*alvo)->getEndereco().getCidade() << endl;
+        else
+            novaCasa << cidade << endl;
+        cout<<"Bairro: ";
+        getline(cin,bairro);
+        if(bairro.empty())
+            novaCasa << (*alvo)->getEndereco().getBairro() << endl;
+        else
+            novaCasa << bairro << endl;
+        cout<<"CEP: ";
+        getline(cin,CEP);
+        if(CEP.empty())
+            novaCasa << (*alvo)->getEndereco().getCEP() << endl;
+        else
+            novaCasa << CEP << endl;
+        cout<<"Logradouro: ";
+        getline(cin,logradouro);
+        if(logradouro.empty())
+            novaCasa << (*alvo)->getEndereco().getLogradouro() << endl;
+        else
+            novaCasa << logradouro << endl;
+        cout<<"Número: ";
+        getline(cin, numero);
+        if(numero.empty())
+            novaCasa << (*alvo)->getEndereco().getNumero() << endl;
+        else
+            novaCasa << numero << endl;
+        cout<<"Número de pavimentos: ";
+        getline(cin, numeroDePavimentos);
+        if(numeroDePavimentos.empty())
+            novaCasa << ((Casa *)(*alvo))->getNumeroDePavimentos() << endl;
+        else
+            novaCasa << numeroDePavimentos << endl;
+        cout<<"Número de quartos: ";
+        getline(cin, numeroDeQuartos);
+        if(numeroDeQuartos.empty())
+            novaCasa << ((Casa *)(*alvo))->getNumeroDeQuartos() << endl;
+        else
+            novaCasa << numeroDeQuartos << endl;
+        cout<<"Área do terreno: ";
+        getline(cin, areaDoTerreno);
+        if(areaDoTerreno.empty())
+            novaCasa << ((Casa *)(*alvo))->getAreaDoTerreno() << endl;
+        else
+            novaCasa << areaDoTerreno << endl;
+        cout<<"Área construida: ";
+        getline(cin, areaConstruida);
+        if(areaConstruida.empty())
+            novaCasa << ((Casa *)(*alvo))->getAreaConstruida() << endl;
+        else
+            novaCasa << areaConstruida << endl;
+
+        int tipoOfertaInt, numeroInt, numeroDePavimentosInt, numeroDeQuartosInt;
+        double valorDoub, areaDoTerrenoDoub, areaConstruidaDoub;
+        
+        getline(novaCasa, descricao);
+        (*alvo)->setDescricao(descricao);
+        novaCasa >> tipoOfertaInt;
+        (*alvo)->setTipoOferta(tipoOfertaInt);
+        novaCasa >> valorDoub;
+        (*alvo)->setValor(valorDoub);
+        novaCasa.ignore();
+        getline(novaCasa, cidade);
+        getline(novaCasa, bairro);
+        getline(novaCasa, CEP);
+        getline(novaCasa, logradouro);
+        novaCasa >> numeroInt;
+
+        end = new Endereco(logradouro, numeroInt, bairro, cidade, CEP);
+        (*alvo)->setEndereco(*end);
+
+        novaCasa >> numeroDePavimentosInt;
+        ((Casa *)(*alvo))->setNumeroDePavimentos(numeroDePavimentosInt);
+        novaCasa >> numeroDeQuartosInt;
+        ((Casa *)(*alvo))->setNumeroDeQuartos(numeroDeQuartosInt);
+        novaCasa >> areaDoTerrenoDoub;
+        ((Casa *)(*alvo))->setAreaDoTerreno(areaDoTerrenoDoub);
+        novaCasa >> areaConstruidaDoub;
+        ((Casa*)(*alvo))->setAreaConstruida(areaConstruidaDoub);
+    }else if(tipoImovel == TIPO_TERRENO)
+    {
+        Terreno *ter;
+        Endereco *end;
+        string descricao, cidade, bairro, CEP, logradouro,
+        tipoOferta, numero,
+        valor, area;
+        stringstream novoTerreno;
+
+        cout<<"Descrição: ";
+        getline(cin,descricao);
+        if(descricao.empty())
+            novoTerreno << (*alvo)->getDescricao() << endl;
+        else
+            novoTerreno << descricao << endl;
+        cout<<"Tipo de oferta: ";
+        getline(cin, tipoOferta);
+        if(tipoOferta.empty())
+            novoTerreno << (*alvo)->getTipoOferta() << endl;
+        else
+            novoTerreno << tipoOferta << endl;
+        cout<<"Valor: ";
+        getline(cin, valor);
+        if(valor.empty())
+            novoTerreno << (*alvo)->getValor() << endl;
+        else
+            novoTerreno << valor << endl;
+        cout<<"Cidade: ";
+        getline(cin,cidade);
+        if(cidade.empty())
+            novoTerreno << (*alvo)->getEndereco().getCidade() << endl;
+        else
+            novoTerreno << cidade << endl;
+        cout<<"Bairro: ";
+        getline(cin,bairro);
+        if(bairro.empty())
+            novoTerreno << (*alvo)->getEndereco().getBairro() << endl;
+        else
+            novoTerreno << bairro << endl;
+        cout<<"CEP: ";
+        getline(cin,CEP);
+        if(CEP.empty())
+            novoTerreno << (*alvo)->getEndereco().getCEP() << endl;
+        else
+            novoTerreno << CEP << endl;
+        cout<<"Logradouro: ";
+        getline(cin,logradouro);
+        if(logradouro.empty())
+            novoTerreno << (*alvo)->getEndereco().getLogradouro() << endl;
+        else
+            novoTerreno << logradouro << endl;
+        cout<<"Número: ";
+        getline(cin, numero);
+        if(numero.empty())
+            novoTerreno << (*alvo)->getEndereco().getNumero() << endl;
+        else
+            novoTerreno << numero << endl;
+        cout<<"Área: ";
+        getline(cin, area);
+        if(area.empty())//=========================================
+            novoTerreno << ((Terreno *)(*alvo))->getArea() << endl;
+        else
+            novoTerreno << area << endl;
+
+        int tipoOfertaInt, numeroInt;
+        double valorDoub, areaDoub;
+
+        getline(novoTerreno, descricao);
+        (*alvo)->setDescricao(descricao);
+        novoTerreno >> tipoOfertaInt;
+        (*alvo)->setTipoOferta(tipoOfertaInt);
+        novoTerreno >> valorDoub;
+        (*alvo)->setValor(valorDoub);
+        novoTerreno.ignore();
+        getline(novoTerreno, cidade);
+        getline(novoTerreno, bairro);
+        getline(novoTerreno, CEP);
+        getline(novoTerreno, logradouro);
+        novoTerreno >> numeroInt;
+        end = new Endereco(logradouro, numeroInt, bairro, cidade, CEP);
+        (*alvo)->setEndereco(*end);
+        novoTerreno >> areaDoub;
+        ((Terreno *)(*alvo))->setArea(areaDoub);
+    }
+    cout << "Imóvel editado com sucesso!\n";
+}
+
 void LRY_IMO::lerImoveisSalvos()
 {
     ifstream arquivoImoveis("./Arquivos/Imoveis.txt");
@@ -812,21 +1151,20 @@ void LRY_IMO::buscarPorDescricao(){
 
 void LRY_IMO::removerImovel(int tipoImovel)
 {
-    if(tipoImovel==1){
+    if(tipoImovel == TIPO_APARTAMENTO){
         cout << getApartamentos();
     }
-    if(tipoImovel==2){
+    if(tipoImovel == TIPO_CASA){
         cout << getCasas();
     }
-    if(tipoImovel==3){
+    if(tipoImovel == TIPO_TERRENO){
         cout << getTerrenos();
     }
     int numero;
-    std::cout<<"Digite o número do imóvel que você deseja remover: ";
-    std::cin>>numero;
+    cout<<"Digite o número do imóvel que você deseja remover: ";
+    cin>>numero;
 
-   vector<Imovel *>::iterator it;
-   vector<Imovel *>::iterator pos;
+    vector<Imovel *>::iterator it, pos;
     int count=0;
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)
     {

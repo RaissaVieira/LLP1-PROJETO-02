@@ -17,9 +17,8 @@ int main()
     imobiliaria.lerImoveisSalvos();
 
     //imobiliaria.buscarPorDescricao();
-    
-    imobiliaria.removerImovel(1);
-    std::cout<<imobiliaria.getApartamentos();
+    imobiliaria.editarImoveis(3);
+    cout << imobiliaria.getTerrenos();
 
     
     return 0;

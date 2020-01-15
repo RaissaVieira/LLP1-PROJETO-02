@@ -18,9 +18,19 @@ class LRY_IMO{ //CRUD imobiliária
 private:
     std::vector<Imovel *>imoveis;
 public:
+    void buscarPorBairro();
+    void buscarPorCidade();
+    void buscarPorValor();
+    void buscarPorDescricao();
     void cadastrarApartamento();
     void cadastrarTerreno();
-    void cadastrarCasa(); 
+    void cadastrarCasa();
+    void editarImoveis(int tipoImovel); 
+
+    string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
+    string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
+    string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
+
     void getImoveis(); //Lista todos os terrenos, casas e apartamentos
     void listarTipoAluguel();
     void listarTipoVenda();
@@ -28,22 +38,22 @@ public:
     void lerApartamentosSalvos();
     void lerTerrenosSalvos();
     void lerImoveisSalvos();
+
+    string maiusculo(string frase);
+
+    void removerImovel(int tipoImovel);
     void salvarApartamentos();
     void salvarCasas();
     void salvarTerrenos();
     void salvarImoveis();
-    void buscarPorBairro();
-    void buscarPorCidade();
-    void buscarPorValor();
-    void buscarPorDescricao();
-    void removerImovel(int tipoImovel);
+
+    string toString(); 
+    
 
 
-    string maiusculo(std::string frase);
-    string toString();
-    string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
-    string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
-    string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
+    
+    
+    
 };
 
 #endif

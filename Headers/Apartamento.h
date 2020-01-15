@@ -20,6 +20,13 @@ public:
     double getArea();
     std::string toString();
 
+    void setPosicao(std::string posicao);
+    void setNumeroDeQuartos(int numeroDeQuartos);
+    void setValorDoCondominio(double valorDoCondominio);
+    void setVagasDeGaragem(int vagasDeGaragem);
+    void setArea(double area);
+
+
 }; 
 
 

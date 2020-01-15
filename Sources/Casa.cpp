@@ -12,6 +12,25 @@ Casa::Casa(string descricao, int tipoOferta, int valor, Endereco endereco,
 
 }
 
+void Casa::setNumeroDePavimentos(int numeroDePavimentos)
+{
+    this->numeroDePavimentos = numeroDePavimentos;
+}
+void Casa::setNumeroDeQuartos(int numeroDeQuartos)
+{
+    this->numeroDeQuartos = numeroDeQuartos;
+}
+void Casa::setAreaDoTerreno(double areaDoTerreno)
+{
+    this->areaDoTerreno = areaDoTerreno;
+}
+void Casa::setAreaConstruida(double areaConstruida)
+{
+    this->areaConstruida = areaConstruida;
+}
+
+
+
 int Casa::getNumeroDePavimentos(){
     return numeroDePavimentos;
 }
