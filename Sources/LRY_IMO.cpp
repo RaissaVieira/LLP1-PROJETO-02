@@ -173,7 +173,7 @@ void LRY_IMO::salvarImoveis()
         contaImoveis++;
     }
     arquivoImoveis.close();
-
+    std::cout<<"Arquivo salvo com sucesso.\n";
 }
 
 void LRY_IMO::cadastrarApartamento()
@@ -821,18 +821,23 @@ void LRY_IMO::removerImovel(int tipoImovel)
     int numero;
     std::cout<<"Digite o número do imóvel que você deseja remover: ";
     std::cin>>numero;
-    if(tipoImovel==1){
-        cout << getApartamentos();
-    }
-    if(tipoImovel==2){
-        cout << getCasas();
-    }
-    if(tipoImovel==3){
-        cout << getTerrenos();
-    }
-    salvarImoveis();
-}
 
+   vector<Imovel *>::iterator it;
+   vector<Imovel *>::iterator pos;
+    int count=0;
+    for(it = this->imoveis.begin(); it < imoveis.end(); it++)
+    {
+        if((*it)->getTipo() == tipoImovel){
+            count++;
+            if(count==numero){
+                pos=it;
+            }
+
+        }
+    }
+    
+    this->imoveis.erase(pos);  
+}
 string LRY_IMO::toString()
 {
     vector<Imovel *>::iterator it;

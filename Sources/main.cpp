@@ -9,6 +9,38 @@ LRY_IMO imobiliaria;
 extern void MenuPrincipal();
 extern void novaOperacao();
 
+void SalvarArquivo(){
+
+    string opcao;
+
+    cout << "Deseja salvar as alterações no arquivo Imoveis.txt?\n";
+    cout << "\t1-SIM\n";
+    cout << "\t2-NAO\n";
+    cout<<"\tDigite a operação que deseja ser realizada: ";
+    cin>>opcao;
+    cin.ignore();
+
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
+
+    switch (escolha)
+    {
+    case 0:
+        printf("\e[H\e[2J"); 
+        SalvarArquivo();
+        break;
+    case 1:
+        imobiliaria.salvarImoveis();
+        break;
+    case 2:
+        break;
+    default:
+        SalvarArquivo();
+    }
+
+}
+
 void novaOperacao(){
     //printf("\e[H\e[2J"); 
     string opcao;
@@ -35,6 +67,8 @@ void novaOperacao(){
         MenuPrincipal();
         break;
     case 2:
+        printf("\e[H\e[2J");
+        SalvarArquivo();
         break;
     default:
         novaOperacao();
