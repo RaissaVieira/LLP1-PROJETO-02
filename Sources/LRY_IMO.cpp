@@ -830,6 +830,7 @@ void LRY_IMO::removerImovel(int tipoImovel)
     if(tipoImovel==3){
         cout << getTerrenos();
     }
+    salvarImoveis();
 }
 
 string LRY_IMO::toString()
