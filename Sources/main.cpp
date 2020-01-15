@@ -42,7 +42,7 @@ void SalvarArquivo(){
 }
 
 void novaOperacao(){
-    //printf("\e[H\e[2J"); 
+    cout << "\n __________________________________________\n";
     string opcao;
 
     cout << "Deseja realizar uma nova operacao?\n";
@@ -131,8 +131,10 @@ void MenuListar (){
     cout<<"\t1-Listar Casa"<<endl;
     cout<<"\t2-Listar Apartamento"<<endl;
     cout<<"\t3-Listar Terreno"<<endl;
-    cout<<"\t4-Listar todos os imoveis"<<endl;
-    cout<<"\t5-Voltar"<<endl;
+    cout<<"\t4-Listar os imoveis para aluguel"<<endl;
+    cout<<"\t5-Listar os imoveis para venda"<<endl;
+    cout<<"\t6-Listar todos os imoveis"<<endl;
+    cout<<"\t7-Voltar"<<endl;
     cout<<"\tDigite a operação que deseja ser realizada: ";
     cin>>opcao;
     cin.ignore();
@@ -159,9 +161,18 @@ void MenuListar (){
         std::cout<<imobiliaria.getTerrenos(3);
         break;
     case 4:
+        printf("\e[H\e[2J"); 
+        imobiliaria.listarTipoAluguel();
+        break;
+    case 5:
+        printf("\e[H\e[2J"); 
+        imobiliaria.listarTipoVenda();
+        break;
+    case 6:
+        printf("\e[H\e[2J"); 
         imobiliaria.getImoveis();
         break;
-    case 5: 
+    case 7: 
         MenuPrincipal();
         break;
     default:

@@ -89,16 +89,6 @@ Bairro das Tapiocas Formosas
 Rua do Abestalhado Lendo
 97
 300
-3
-Vendo Terreno
-1
-276000
-Recife
-Boa Vista
-7068774
-Rua dos Leigos
-87
-300
 1
 Aluga-se apartamento no Geisel
 2
@@ -136,3 +126,13 @@ Centro
 2
 90
 50
+3
+terreno de um ptista
+2
+34500
+fantasma
+desconhecido
+99999.000
+projetada
+33
+234.9
