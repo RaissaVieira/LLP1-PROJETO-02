@@ -32,10 +32,6 @@ public:
     void salvarCasas();
     void salvarTerrenos();
     void salvarImoveis();
-    void buscarPorBairro();
-    void buscarPorCidade();
-    void buscarPorValor();
-    void buscarPorDescricao();
     void removerImovel(int tipoImovel);
 
 
@@ -44,6 +40,10 @@ public:
     string getCasas(int tipoOferta = VENDA_OU_ALUGUEL);
     string getTerrenos(int tipoOferta = VENDA_OU_ALUGUEL);
     string getApartamentos(int tipoOferta = VENDA_OU_ALUGUEL);
+    string LRY_IMO::buscarPorBairro(string buscar)
+    string buscarPorCidade();
+    string buscarPorValor();
+    string buscarPorDescricao();
 };
 
 #endif

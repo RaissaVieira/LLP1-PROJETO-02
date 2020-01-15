@@ -7,9 +7,9 @@ using namespace std;
 LRY_IMO imobiliaria;
 
 extern void MenuPrincipal();
-extern void novaOperacao();
 
-void SalvarArquivo(){
+void SalvarArquivo()
+{
 
     string opcao;
 
@@ -41,7 +41,8 @@ void SalvarArquivo(){
 
 }
 
-void novaOperacao(){
+void novaOperacao()
+{
     cout << "\n __________________________________________\n";
     string opcao;
 
@@ -76,7 +77,8 @@ void novaOperacao(){
 
 }
 
-void MenuCadastro (){
+void MenuCadastro ()
+{
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -123,7 +125,9 @@ void MenuCadastro (){
     novaOperacao();
 }
 
-void MenuListar (){
+void MenuListar ()
+{
+
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -181,7 +185,8 @@ void MenuListar (){
     novaOperacao();
 }
 
-void MenuBuscar (){
+void MenuBuscar ()
+{
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -199,29 +204,32 @@ void MenuBuscar (){
     int escolha = 0;
     op>>escolha;
 
-    switch (escolha)
+    switchje (escolha)
     {
     case 0:
         MenuBuscar();
         break;
     case 1:
-        printf("\e[H\e[2J"); 
-        imobiliaria.buscarPorBairro();
+        printf("\e[H\e[2J");
+        string buscar; 
+        cout << "Digite o nome do bairro que deseja procurar: ";
+        std::getline(std::cin,buscar);
+        cout<<imobiliaria.buscarPorBairro(buscar);
         
         break;
     case 2:
         printf("\e[H\e[2J"); 
-        imobiliaria.buscarPorCidade();
+        cout<<imobiliaria.buscarPorCidade();
         
         break;
     case 3:
         printf("\e[H\e[2J"); 
-        imobiliaria.buscarPorValor();
+        cout<<imobiliaria.buscarPorValor();
         
         break;
     case 4:
         printf("\e[H\e[2J"); 
-        imobiliaria.buscarPorDescricao();
+        cout<<imobiliaria.buscarPorDescricao();
         
     case 5: 
         printf("\e[H\e[2J"); 
@@ -233,7 +241,8 @@ void MenuBuscar (){
     novaOperacao();
 }
 
-void MenuRemover (){
+void MenuRemover ()
+{
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -277,7 +286,8 @@ void MenuRemover (){
     novaOperacao();
 }
 
-void MenuPrincipal(){
+void MenuPrincipal()
+{
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -321,7 +331,8 @@ void MenuPrincipal(){
         MenuPrincipal();
     }
 }
-int main (void){
+int main (void)
+{
     imobiliaria.lerImoveisSalvos();
     setlocale(LC_ALL,"portuguese");
     MenuPrincipal();
