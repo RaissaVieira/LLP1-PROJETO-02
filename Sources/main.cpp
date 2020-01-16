@@ -5,8 +5,10 @@
 using namespace std;
 
 LRY_IMO imobiliaria;
+std::string lista;
 
-extern void MenuPrincipal();
+
+extern int MenuPrincipal();
 
 void SalvarArquivo()
 {
@@ -185,8 +187,6 @@ void MenuListar ()
     novaOperacao();
 }
 
-
-
 void MenuRemoverA (std::string lista)
 {
     //printf("\e[H\e[2J"); 
@@ -224,7 +224,7 @@ void MenuRemoverA (std::string lista)
     novaOperacao();
 }
 
-void MenuBuscar ()
+void MenuBuscar (int buscar)
 {
     printf("\e[H\e[2J"); 
     string opcao;
@@ -242,48 +242,52 @@ void MenuBuscar ()
     stringstream op (opcao);
     int escolha = 0;
     op>>escolha; 
-    std::string lista;
+    //std::string lista;
 
     switch (escolha)
     {
     case 0:
-        MenuBuscar();
+        MenuBuscar(3);
         break;
     case 1:
         printf("\e[H\e[2J");
         lista=imobiliaria.buscarPorBairro();
         cout<<lista;
-        MenuRemoverA(lista);
+        //MenuRemoverA(lista);
         break;
     case 2:
         printf("\e[H\e[2J");
         lista=imobiliaria.buscarPorCidade();
         cout<<lista;
-        MenuRemoverA(lista);
+        //MenuRemoverA(lista);
         break;
     case 3:
         printf("\e[H\e[2J"); 
         lista=imobiliaria.buscarPorValor();
         cout<<lista;
-        MenuRemoverA(lista);
+        //MenuRemoverA(lista);
         break;
     case 4:
         printf("\e[H\e[2J"); 
         lista=imobiliaria.buscarPorDescricao();
         cout<<lista;
-        MenuRemoverA(lista);
+        //MenuRemoverA(lista);
     case 5: 
         printf("\e[H\e[2J"); 
         MenuPrincipal();
         break;
     default:
-        MenuBuscar();
+        MenuBuscar(3);
     }
-    novaOperacao();
+
+    if(buscar != 5)
+        novaOperacao();
 }
 
-void MenuPrincipal()
-{
+int MenuPrincipal()
+{   
+    int buscar;
+    
     printf("\e[H\e[2J"); 
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
@@ -291,7 +295,8 @@ void MenuPrincipal()
     cout<<"\t2-Listar"<<endl;
     cout<<"\t3-Buscar"<<endl;
     cout<<"\t4-Editar"<<endl;
-    cout<<"\t5-Sair"<<endl;
+    cout<<"\t5-Remover"<<endl;
+    cout<<"\t6-Sair"<<endl;
     cout<<"\tDigite a operação que deseja ser realizada: ";
     cin>>opcao;
     cin.ignore();
@@ -312,13 +317,17 @@ void MenuPrincipal()
         MenuListar();
         break;
     case 3:
-        MenuBuscar();
+        MenuBuscar(3);
         break;
     case 4:
         cout<<"Editar"<<endl;
         break;
-    case 5:
+    case 5: 
+        MenuBuscar(5);
+        MenuRemoverA(lista);
         break;
+    case 6:
+        return 0;
     default:
         MenuPrincipal();
     }

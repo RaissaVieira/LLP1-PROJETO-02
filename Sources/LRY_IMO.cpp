@@ -826,6 +826,7 @@ void LRY_IMO::removerImovel( string lista)
     cout<<lista;
     int numero=1,tipo=0;
     //while(numero!=0 && (tipo==1 || tipo==2)){
+    cout << "\n __________________________________________\n";
     std::cout<<"Digite o tipo do imóvel que você deseja remover(Apartamento=1, Casa=2, Terreno=3): ";
     std::cin>>tipo;
     std::cout<<"Digite o número do imóvel que você deseja remover: ";
