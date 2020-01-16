@@ -821,29 +821,22 @@ std::string LRY_IMO::buscarPorDescricao()
     }
     return saida.str();
 }
-void LRY_IMO::removerImovel(int tipoImovel)
+void LRY_IMO::removerImovel( string lista)
 {
-    
-
-    if(tipoImovel==1){
-        cout << getApartamentos();
-    }
-    if(tipoImovel==2){
-        cout << getCasas();
-    }
-    if(tipoImovel==3){
-        cout << getTerrenos();
-    }
-    int numero;
+    cout<<lista;
+    int numero=1,tipo=0;
+    //while(numero!=0 && (tipo==1 || tipo==2)){
+    std::cout<<"Digite o tipo do imóvel que você deseja remover(Apartamento=1, Casa=2, Terreno=3): ";
+    std::cin>>tipo;
     std::cout<<"Digite o número do imóvel que você deseja remover: ";
     std::cin>>numero;
-
+    //}
    vector<Imovel *>::iterator it;
    vector<Imovel *>::iterator pos;
     int count=0;
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)
     {
-        if((*it)->getTipo() == tipoImovel){
+        if((*it)->getTipo() == tipo){
             count++;
             if(count==numero){
                 pos=it;
@@ -851,7 +844,6 @@ void LRY_IMO::removerImovel(int tipoImovel)
 
         }
     }
-    
     this->imoveis.erase(pos);  
 }
 string LRY_IMO::toString()

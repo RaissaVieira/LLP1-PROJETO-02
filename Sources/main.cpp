@@ -185,6 +185,45 @@ void MenuListar ()
     novaOperacao();
 }
 
+
+
+void MenuRemoverA (std::string lista)
+{
+    //printf("\e[H\e[2J"); 
+    string opcao;
+    cout<<"\nLRY Imobiliária"<<endl;
+    cout<<"Deseja remover algum imóvel dessa lista?"<<endl;
+    cout<<"\t1-Sim"<<endl;
+    cout<<"\t2-Não"<<endl;
+    cout<<"\tDigite a operação que deseja ser realizada: ";
+    cin>>opcao;
+    cin.ignore();
+
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
+
+    switch (escolha)
+    {
+    case 0:
+        printf("\e[H\e[2J"); 
+        MenuRemoverA(lista);
+        break;
+    case 1:
+        printf("\e[H\e[2J"); 
+        imobiliaria.removerImovel(lista);
+        break;
+    case 2:
+        printf("\e[H\e[2J"); 
+        novaOperacao();
+        break;
+    default:
+        printf("\e[H\e[2J"); 
+        MenuRemoverA(lista);
+    }
+    novaOperacao();
+}
+
 void MenuBuscar ()
 {
     printf("\e[H\e[2J"); 
@@ -203,6 +242,7 @@ void MenuBuscar ()
     stringstream op (opcao);
     int escolha = 0;
     op>>escolha; 
+    std::string lista;
 
     switch (escolha)
     {
@@ -211,73 +251,33 @@ void MenuBuscar ()
         break;
     case 1:
         printf("\e[H\e[2J");
-        cout<<imobiliaria.buscarPorBairro();
-        
+        lista=imobiliaria.buscarPorBairro();
+        cout<<lista;
+        MenuRemoverA(lista);
         break;
     case 2:
         printf("\e[H\e[2J");
-        cout<<imobiliaria.buscarPorCidade();
+        lista=imobiliaria.buscarPorCidade();
+        cout<<lista;
+        MenuRemoverA(lista);
         break;
     case 3:
         printf("\e[H\e[2J"); 
-        cout<<imobiliaria.buscarPorValor();
-        
+        lista=imobiliaria.buscarPorValor();
+        cout<<lista;
+        MenuRemoverA(lista);
         break;
     case 4:
         printf("\e[H\e[2J"); 
-        cout<<imobiliaria.buscarPorDescricao();
-        
+        lista=imobiliaria.buscarPorDescricao();
+        cout<<lista;
+        MenuRemoverA(lista);
     case 5: 
         printf("\e[H\e[2J"); 
         MenuPrincipal();
         break;
     default:
         MenuBuscar();
-    }
-    novaOperacao();
-}
-
-void MenuRemover ()
-{
-    printf("\e[H\e[2J"); 
-    string opcao;
-    cout<<"LRY Imobiliária"<<endl;
-    cout<<"REMOVER"<<endl;
-    cout<<"\t1-Remover Casa"<<endl;
-    cout<<"\t2-Remover Apartamento"<<endl;
-    cout<<"\t3-Remover Terreno"<<endl;
-    cout<<"\t4-Voltar"<<endl;
-    cout<<"\tDigite a operação que deseja ser realizada: ";
-    cin>>opcao;
-    cin.ignore();
-
-    stringstream op (opcao);
-    int escolha = 0;
-    op>>escolha;
-
-    switch (escolha)
-    {
-    case 0:
-        MenuRemover();
-        break;
-    case 1:
-        printf("\e[H\e[2J"); 
-        imobiliaria.removerImovel(2);
-        break;
-    case 2:
-        printf("\e[H\e[2J"); 
-        imobiliaria.removerImovel(1);
-        break;
-    case 3:
-        printf("\e[H\e[2J"); 
-        imobiliaria.removerImovel(3);
-        break;
-    case 4: 
-        printf("\e[H\e[2J"); 
-        MenuPrincipal();
-        break;
-    default:
-        MenuRemover();
     }
     novaOperacao();
 }
@@ -290,9 +290,8 @@ void MenuPrincipal()
     cout<<"\t1-Cadastro"<<endl;
     cout<<"\t2-Listar"<<endl;
     cout<<"\t3-Buscar"<<endl;
-    cout<<"\t4-Remover"<<endl;
-    cout<<"\t5-Editar"<<endl;
-    cout<<"\t6-Sair"<<endl;
+    cout<<"\t4-Editar"<<endl;
+    cout<<"\t5-Sair"<<endl;
     cout<<"\tDigite a operação que deseja ser realizada: ";
     cin>>opcao;
     cin.ignore();
@@ -315,18 +314,16 @@ void MenuPrincipal()
     case 3:
         MenuBuscar();
         break;
-    case 4: 
-        MenuRemover();
-        break;
-    case 5:
+    case 4:
         cout<<"Editar"<<endl;
         break;
-    case 6:
+    case 5:
         break;
     default:
         MenuPrincipal();
     }
 }
+
 int main (void)
 {
     imobiliaria.lerImoveisSalvos();
