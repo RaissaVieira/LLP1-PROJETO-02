@@ -38,6 +38,7 @@ void SalvarArquivo()
     case 2:
         break;
     default:
+        printf("\e[H\e[2J"); 
         SalvarArquivo();
     }
 
@@ -74,8 +75,10 @@ void novaOperacao()
         SalvarArquivo();
         break;
     default:
+        printf("\e[H\e[2J"); 
         novaOperacao();
     }
+    //novaOperacao();
 
 }
 
@@ -190,7 +193,7 @@ void MenuListar ()
 void MenuRemoverA (std::string lista)
 {
     //printf("\e[H\e[2J"); 
-    string opcao;
+    /*string opcao;
     cout<<"\nLRY Imobiliária"<<endl;
     cout<<"Deseja remover algum imóvel dessa lista?"<<endl;
     cout<<"\t1-Sim"<<endl;
@@ -220,7 +223,8 @@ void MenuRemoverA (std::string lista)
     default:
         printf("\e[H\e[2J"); 
         MenuRemoverA(lista);
-    }
+    }*/
+    imobiliaria.removerImovel(lista);
     novaOperacao();
 }
 
