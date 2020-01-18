@@ -341,5 +341,9 @@ int main (void)
 {
     imobiliaria.lerImoveisSalvos();
     setlocale(LC_ALL,"portuguese");
-    MenuPrincipal();
+
+    imobiliaria.editarImoveis(1);
+
+    cout << imobiliaria.getApartamentos();
 }
+

@@ -33,3 +33,21 @@ void Imovel::setTipo(int tipo)//Invocada quando cadastramos um imóvel, para ide
 {
     this->tipo = tipo;
 }
+
+void Imovel::setDescricao(std::string descricao)
+{
+
+}
+void Imovel::setValor(int valor)
+{
+    this->valor = valor;
+}
+void Imovel::setEndereco(Endereco endereco)
+{
+    this->endereco = endereco;
+}
+
+void Imovel::setTipoOferta(int tipoOferta)
+{
+    this->tipoOferta = tipoOferta;
+} 

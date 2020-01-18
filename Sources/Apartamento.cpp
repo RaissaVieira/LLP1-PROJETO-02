@@ -60,3 +60,24 @@ std::string Apartamento::toString()
 
     return saida.str();
 }
+
+void Apartamento::setPosicao(std::string posicao)
+{
+    this->posicao = posicao;
+}
+void Apartamento::setNumeroDeQuartos(int numeroDeQuartos)
+{
+    this->numeroDeQuartos = numeroDeQuartos;
+}
+void Apartamento::setValorDoCondominio(double valorDoCondominio)
+{
+    this->valorDoCondominio = valorDoCondominio;
+}
+void Apartamento::setVagasDeGaragem(int vagasDeGaragem)
+{
+    this->vagasDeGaragem = vagasDeGaragem;
+}
+void Apartamento::setArea(double area)
+{
+    this->area = area;
+}

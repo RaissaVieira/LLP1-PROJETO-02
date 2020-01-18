@@ -888,7 +888,7 @@ string LRY_IMO::toString()
 
     return saida.str();
 }
-/*void LRY_IMO::editarImoveis(int tipoImovel)
+void LRY_IMO::editarImoveis(int tipoImovel)
 {
     switch(tipoImovel)
     {
@@ -1225,5 +1225,5 @@ string LRY_IMO::toString()
         ((Terreno *)(*alvo))->setArea(areaDoub);
     }
     cout << "Imóvel editado com sucesso!\n";
-}*/
+}
 

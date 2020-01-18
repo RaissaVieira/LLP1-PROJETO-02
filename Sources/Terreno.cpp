@@ -32,3 +32,9 @@ std::string Terreno::toString(){
     return saida.str();
 
 }
+
+
+void Terreno::setArea(double area)
+{
+    this->area = area;
+} 

@@ -48,3 +48,21 @@ std::string Casa::toString(){
 
     return saida.str();
 }
+
+void Casa::setNumeroDePavimentos(int numeroDePavimentos)
+{
+    this->numeroDePavimentos = numeroDePavimentos;
+}
+void Casa::setNumeroDeQuartos(int numeroDeQuartos)
+{
+    this->numeroDeQuartos = numeroDeQuartos;
+}
+void Casa::setAreaDoTerreno(double areaDoTerreno)
+{
+    this->areaDoTerreno = areaDoTerreno;
+}
+void Casa::setAreaConstruida(double areaConstruida)
+{
+    this->areaConstruida = areaConstruida;
+}
+

@@ -9,6 +9,8 @@ public:
     Terreno(std::string descricao, int tipoOferta, int valor, Endereco endereco, double area);
     double getArea();
     std::string toString();
+
+    void setArea(double area);
 };
 
 
