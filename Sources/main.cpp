@@ -129,6 +129,53 @@ void MenuCadastro ()
     }
     novaOperacao();
 }
+void MenuEditar ()
+{
+    printf("\e[H\e[2J"); 
+    string opcao;
+    cout<<"LRY Imobiliária"<<endl;
+    cout<<"CADASTRO"<<endl;
+    cout<<"\t1-Editar Casa"<<endl;
+    cout<<"\t2-Editar Apartamento"<<endl;
+    cout<<"\t3-Editar Terreno"<<endl;
+    cout<<"\t4-Voltar"<<endl;
+    cout<<"\tDigite a operação que deseja ser realizada: ";
+    cin>>opcao;
+    cin.ignore();
+
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
+
+    switch (escolha)
+    {
+    case 0:
+        printf("\e[H\e[2J"); 
+        MenuCadastro();
+        break;
+    case 1:
+        printf("\e[H\e[2J"); 
+        imobiliaria.editarImoveis(2);
+        novaOperacao();
+        break;
+    case 2:
+        printf("\e[H\e[2J"); 
+        imobiliaria.editarImoveis(1);
+        novaOperacao();
+        break;
+    case 3:
+        printf("\e[H\e[2J"); 
+        imobiliaria.editarImoveis(3);
+        novaOperacao();
+        break;
+    case 4: 
+        MenuPrincipal();
+        break;
+    default:
+        MenuCadastro();
+    }
+    novaOperacao();
+}
 
 void MenuListar ()
 {
@@ -190,40 +237,8 @@ void MenuListar ()
     novaOperacao();
 }
 
-void MenuRemoverA (std::string lista)
+void MenuRemover (std::string lista)
 {
-    //printf("\e[H\e[2J"); 
-    /*string opcao;
-    cout<<"\nLRY Imobiliária"<<endl;
-    cout<<"Deseja remover algum imóvel dessa lista?"<<endl;
-    cout<<"\t1-Sim"<<endl;
-    cout<<"\t2-Não"<<endl;
-    cout<<"\tDigite a operação que deseja ser realizada: ";
-    cin>>opcao;
-    cin.ignore();
-
-    stringstream op (opcao);
-    int escolha = 0;
-    op>>escolha;
-
-    switch (escolha)
-    {
-    case 0:
-        printf("\e[H\e[2J"); 
-        MenuRemoverA(lista);
-        break;
-    case 1:
-        printf("\e[H\e[2J"); 
-        imobiliaria.removerImovel(lista);
-        break;
-    case 2:
-        printf("\e[H\e[2J"); 
-        novaOperacao();
-        break;
-    default:
-        printf("\e[H\e[2J"); 
-        MenuRemoverA(lista);
-    }*/
     imobiliaria.removerImovel(lista);
     novaOperacao();
 }
@@ -324,11 +339,11 @@ int MenuPrincipal()
         MenuBuscar(3);
         break;
     case 4:
-        cout<<"Editar"<<endl;
+        MenuEditar();
         break;
     case 5: 
         MenuBuscar(5);
-        MenuRemoverA(lista);
+        MenuRemover(lista);
         break;
     case 6:
         return 0;
@@ -342,8 +357,6 @@ int main (void)
     imobiliaria.lerImoveisSalvos();
     setlocale(LC_ALL,"portuguese");
 
-    imobiliaria.editarImoveis(1);
-
-    cout << imobiliaria.getApartamentos();
+    MenuPrincipal();
 }
 
