@@ -7,6 +7,16 @@ using namespace std;
 LRY_IMO imobiliaria;
 std::string lista;
 
+void limpa_tela()
+{
+    #ifdef __unix__
+        system("clear");
+    #elif WIN32
+        system("cls");
+    #endif
+    
+    //printf("\e[H\e[2J");
+}
 
 extern int MenuPrincipal();
 
@@ -29,7 +39,7 @@ void SalvarArquivo()
     switch (escolha)
     {
     case 0:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         SalvarArquivo();
         break;
     case 1:
@@ -38,7 +48,7 @@ void SalvarArquivo()
     case 2:
         break;
     default:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         SalvarArquivo();
     }
 
@@ -63,19 +73,19 @@ void novaOperacao()
     switch (escolha)
     {
     case 0:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         novaOperacao();
         break;
     case 1:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         MenuPrincipal();
         break;
     case 2:
-        printf("\e[H\e[2J");
+        limpa_tela();
         SalvarArquivo();
         break;
     default:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         novaOperacao();
     }
     //novaOperacao();
@@ -84,7 +94,7 @@ void novaOperacao()
 
 void MenuCadastro ()
 {
-    printf("\e[H\e[2J"); 
+    limpa_tela();
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
     cout<<"CADASTRO"<<endl;
@@ -103,21 +113,21 @@ void MenuCadastro ()
     switch (escolha)
     {
     case 0:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         MenuCadastro();
         break;
     case 1:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.cadastrarCasa();
         novaOperacao();
         break;
     case 2:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.cadastrarApartamento();
         novaOperacao();
         break;
     case 3:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.cadastrarTerreno();
         novaOperacao();
         break;
@@ -131,56 +141,14 @@ void MenuCadastro ()
 }
 void MenuEditar ()
 {
-    printf("\e[H\e[2J"); 
-    string opcao;
-    cout<<"LRY Imobiliária"<<endl;
-    cout<<"CADASTRO"<<endl;
-    cout<<"\t1-Editar Casa"<<endl;
-    cout<<"\t2-Editar Apartamento"<<endl;
-    cout<<"\t3-Editar Terreno"<<endl;
-    cout<<"\t4-Voltar"<<endl;
-    cout<<"\tDigite a operação que deseja ser realizada: ";
-    cin>>opcao;
-    cin.ignore();
-
-    stringstream op (opcao);
-    int escolha = 0;
-    op>>escolha;
-
-    switch (escolha)
-    {
-    case 0:
-        printf("\e[H\e[2J"); 
-        MenuCadastro();
-        break;
-    case 1:
-        printf("\e[H\e[2J"); 
-        imobiliaria.editarImoveis(2);
-        novaOperacao();
-        break;
-    case 2:
-        printf("\e[H\e[2J"); 
-        imobiliaria.editarImoveis(1);
-        novaOperacao();
-        break;
-    case 3:
-        printf("\e[H\e[2J"); 
-        imobiliaria.editarImoveis(3);
-        novaOperacao();
-        break;
-    case 4: 
-        MenuPrincipal();
-        break;
-    default:
-        MenuCadastro();
-    }
+    imobiliaria.editarImoveis();
     novaOperacao();
 }
 
 void MenuListar ()
 {
 
-    printf("\e[H\e[2J"); 
+    limpa_tela();
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
     cout<<"LISTAR"<<endl;
@@ -205,27 +173,27 @@ void MenuListar ()
         MenuListar();
         break;
     case 1:
-        printf("\e[H\e[2J"); 
-        std::cout<<imobiliaria.getCasas(3);
+        limpa_tela();
+        std::cout<<imobiliaria.getCasas();
         break;
     case 2:
-        printf("\e[H\e[2J"); 
-        std::cout<<imobiliaria.getApartamentos(3);
+        limpa_tela();
+        std::cout<<imobiliaria.getApartamentos();
         break;
     case 3:
-        printf("\e[H\e[2J"); 
-        std::cout<<imobiliaria.getTerrenos(3);
+        limpa_tela();
+        std::cout<<imobiliaria.getTerrenos();
         break;
     case 4:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.listarTipoAluguel();
         break;
     case 5:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.listarTipoVenda();
         break;
     case 6:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         imobiliaria.getImoveis();
         break;
     case 7: 
@@ -245,7 +213,7 @@ void MenuRemover (std::string lista)
 
 void MenuBuscar (int buscar)
 {
-    printf("\e[H\e[2J"); 
+    limpa_tela();
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
     cout<<"BUSCAR"<<endl;
@@ -269,30 +237,31 @@ void MenuBuscar (int buscar)
         MenuBuscar(3);
         break;
     case 1:
-        printf("\e[H\e[2J");
+        limpa_tela();
         lista=imobiliaria.buscarPorBairro();
         cout<<lista;
         //MenuRemoverA(lista);
         break;
     case 2:
-        printf("\e[H\e[2J");
+        limpa_tela();
         lista=imobiliaria.buscarPorCidade();
         cout<<lista;
         //MenuRemoverA(lista);
         break;
     case 3:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         lista=imobiliaria.buscarPorValor();
         cout<<lista;
         //MenuRemoverA(lista);
         break;
     case 4:
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         lista=imobiliaria.buscarPorDescricao();
         cout<<lista;
+        break;
         //MenuRemoverA(lista);
     case 5: 
-        printf("\e[H\e[2J"); 
+        limpa_tela();
         MenuPrincipal();
         break;
     default:
@@ -307,7 +276,7 @@ int MenuPrincipal()
 {   
     int buscar;
     
-    printf("\e[H\e[2J"); 
+    limpa_tela();
     string opcao;
     cout<<"LRY Imobiliária"<<endl;
     cout<<"\t1-Cadastro"<<endl;
@@ -339,6 +308,7 @@ int MenuPrincipal()
         MenuBuscar(3);
         break;
     case 4:
+        MenuBuscar(5);
         MenuEditar();
         break;
     case 5: 

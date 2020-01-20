@@ -33,7 +33,7 @@ public:
     void salvarTerrenos();
     void salvarImoveis();
     void removerImovel(string lista);
-    void editarImoveis(int tipoImovel);
+    void editarImoveis();
 
 
     std::string maiusculo(std::string frase);

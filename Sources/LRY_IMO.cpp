@@ -751,9 +751,9 @@ std::string LRY_IMO::buscarPorDescricao()
     saida << "\t=========APARTAMENTOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo apartamentos.
     {
-        a++;
         if((*it)->getTipo() == TIPO_APARTAMENTO){
-            if((maiusculo((*it)->getDescricao()).find(maiusculo(buscar))) != string::npos )
+            a++;
+            if((maiusculo((*it)->getDescricao()).find(maiusculo(buscar))) != string::npos)
             {
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
@@ -776,9 +776,8 @@ std::string LRY_IMO::buscarPorDescricao()
     saida << "\t=========TERRENOS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Terrenos.
     {
-        t++;
         if((*it)->getTipo() == TIPO_TERRENO){
-
+            t++;
             if((maiusculo((*it)->getDescricao())).find(maiusculo(buscar)) != string::npos )
             {
                 saida << "\tTerreno " << t << "\n";
@@ -798,9 +797,8 @@ std::string LRY_IMO::buscarPorDescricao()
     saida << "\t=========CASAS=========\n";
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)//Exibindo Casas.
     {
-        c++;
         if((*it)->getTipo() == TIPO_CASA){
-
+            c++;
             if((maiusculo((*it)->getDescricao())).find(maiusculo(buscar)) != string::npos )
             {   
                 saida << "\tCasa " << c << "\n";     
@@ -823,7 +821,7 @@ std::string LRY_IMO::buscarPorDescricao()
 }
 void LRY_IMO::removerImovel( string lista)
 {
-    cout<<lista;
+    //cout<<lista;
     int numero=1,tipo=0;
     //while(numero!=0 && (tipo==1 || tipo==2)){
     cout << "\n __________________________________________\n";
@@ -888,15 +886,17 @@ string LRY_IMO::toString()
 
     return saida.str();
 }
-void LRY_IMO::editarImoveis(int tipoImovel)
+void LRY_IMO::editarImoveis()
 {
-    switch(tipoImovel)
+    /*switch(tipoImovel)
     {
         case TIPO_APARTAMENTO: cout << getApartamentos(); break;
         case TIPO_CASA:        cout << getCasas(); break;
         case TIPO_TERRENO:     cout << getTerrenos(); 
-    }
-    int numero, count = 0;
+    }*/
+    int numero, count = 0, tipo;
+    cout<<"Digite o tipo do imóvel que você deseja remover(Apartamento=1, Casa=2, Terreno=3): ";
+    cin>>tipo;
     cout<<"Digite o número do imóvel que você deseja editar: ";
     cin>>numero;
     cin.ignore();
@@ -904,7 +904,7 @@ void LRY_IMO::editarImoveis(int tipoImovel)
     vector<Imovel *>::iterator it, alvo;
     for(it = this->imoveis.begin(); it < imoveis.end(); it++)
     {
-        if((*it)->getTipo() == tipoImovel){
+        if((*it)->getTipo() == tipo){
             count++;
             if(count==numero){
                 alvo=it;
@@ -913,7 +913,7 @@ void LRY_IMO::editarImoveis(int tipoImovel)
         }
     }
     cout << "Pressione ENTER para manter os valores atuais.\n";
-    if(tipoImovel == TIPO_APARTAMENTO)
+    if(tipo == TIPO_APARTAMENTO)
     {
         Apartamento *ap;
         Endereco *end;
@@ -1031,7 +1031,7 @@ void LRY_IMO::editarImoveis(int tipoImovel)
         ((Apartamento *)(*alvo))->setArea(areaDoub);
         
 
-    }else if(tipoImovel == TIPO_CASA)
+    }else if(tipo == TIPO_CASA)
     {
         Casa *casa;
         Endereco *end;
@@ -1140,7 +1140,7 @@ void LRY_IMO::editarImoveis(int tipoImovel)
         ((Casa *)(*alvo))->setAreaDoTerreno(areaDoTerrenoDoub);
         novaCasa >> areaConstruidaDoub;
         ((Casa*)(*alvo))->setAreaConstruida(areaConstruidaDoub);
-    }else if(tipoImovel == TIPO_TERRENO)
+    }else if(tipo == TIPO_TERRENO)
     {
         Terreno *ter;
         Endereco *end;
@@ -1226,4 +1226,3 @@ void LRY_IMO::editarImoveis(int tipoImovel)
     }
     cout << "Imóvel editado com sucesso!\n";
 }
-
