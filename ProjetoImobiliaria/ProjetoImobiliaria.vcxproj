@@ -26,6 +26,7 @@
     <ClCompile Include="..\Sources\LRY_IMO.cpp" />
     <ClCompile Include="..\Sources\main.cpp" />
     <ClCompile Include="..\Sources\Terreno.cpp" />
+    <ClCompile Include="MenuPrincipal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\Apartamento.h" />
@@ -34,6 +35,21 @@
     <ClInclude Include="..\Headers\Imovel.h" />
     <ClInclude Include="..\Headers\LRY_IMO.h" />
     <ClInclude Include="..\Headers\Terreno.h" />
+    <ClInclude Include="MenuPrincipal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -98,6 +114,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

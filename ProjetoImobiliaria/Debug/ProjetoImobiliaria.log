@@ -1,13 +1,3 @@
-﻿  LRY_IMO.cpp
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(86,50): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(110,53): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(261,45): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(306,42): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(1015,27): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(1127,27): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(1218,27): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(921,22): warning C4101: 'ap': variável local não referenciada
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(1039,15): warning C4101: 'casa': variável local não referenciada
-C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\Sources\LRY_IMO.cpp(1148,18): warning C4101: 'ter': variável local não referenciada
+﻿  MenuPrincipal.cpp
   Apartamento.obj : Módulo MSIL encontrado; vínculo incremental está desabilitado para MSIL; executando link completo
   ProjetoImobiliaria.vcxproj -> C:\Users\Casa\Documents\Projeto-LLP1\LLP1-PROJETO-02\ProjetoImobiliaria\Debug\ProjetoImobiliaria.exe
