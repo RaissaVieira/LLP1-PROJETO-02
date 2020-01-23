@@ -1,7 +1,9 @@
 #include "../Headers/LRY_IMO.h"
 #include <iostream>
 #include <fstream>
-#include<bits/stdc++.h> //Utilizar esta biblioteca é uma má prática de programação.
+#include <sstream>
+#include <algorithm>
+//#include<bits/stdc++.h> //Utilizar esta biblioteca é uma má prática de programação.
 
 #define TIPO_APARTAMENTO 1
 #define TIPO_CASA 2
@@ -11,12 +13,13 @@
 #define ALUGUEL 2
 #define VENDA_OU_ALUGUEL 3
 
+const char* caminhoImoveis = "../Arquivos/Imoveis.txt";
 
 using namespace std; //Não é uma boa prática utilizar "using namespace..." em arquivos que não sejam o main
 
 void LRY_IMO::lerImoveisSalvos()
 {
-    ifstream arquivoImoveis("./Arquivos/Imoveis.txt");
+    ifstream arquivoImoveis(caminhoImoveis);
     int tipoImovel; //Pode ser 1, 2 ou 3
 
     while(!arquivoImoveis.eof())
@@ -116,7 +119,7 @@ void LRY_IMO::lerImoveisSalvos()
 
 void LRY_IMO::salvarImoveis()
 {
-    ofstream arquivoImoveis("./Arquivos/Imoveis.txt");
+    ofstream arquivoImoveis(caminhoImoveis);
 
     vector<Imovel *>::iterator it;
     int contaImoveis = 0;

@@ -3,7 +3,7 @@
 #include <sstream>
 
 
-Apartamento::Apartamento(std::string descricao, int tipoOferta, int valor, Endereco endereco,std::string posicao, 
+Apartamento::Apartamento(std::string descricao, int tipoOferta, double valor, Endereco endereco,std::string posicao, 
 int numeroDeQuartos, double valorDoCondominio, int vagasDeGaragem,double area) : Imovel(descricao, tipoOferta, valor, endereco)
 {
     this->posicao = posicao;

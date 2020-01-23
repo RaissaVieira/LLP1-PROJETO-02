@@ -11,7 +11,7 @@ private:
     int vagasDeGaragem;
     double area;
 public:
-    Apartamento(std::string descricao, int tipoOferta, int valor, Endereco endereco,std::string posicao, 
+    Apartamento(std::string descricao, int tipoOferta, double valor, Endereco endereco,std::string posicao, 
     int numeroDeQuartos, double valorDoCondominio, int vagasDeGaragem,double area);
     std::string getPosicao();
     int getNumeroDeQuartos();
