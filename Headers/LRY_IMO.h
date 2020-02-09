@@ -34,7 +34,7 @@ public:
     void salvarImoveis();
     void removerImovel(string lista);
     void editarImoveis();
-
+    
 
     std::string maiusculo(std::string frase);
     std::string toString();
@@ -45,6 +45,9 @@ public:
     std::string buscarPorCidade();
     std::string buscarPorValor();
     std::string buscarPorDescricao();
+    
+    
+    int menuVendaouAluguel();
 };
 
 #endif

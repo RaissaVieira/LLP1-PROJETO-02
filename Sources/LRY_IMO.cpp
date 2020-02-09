@@ -1,6 +1,8 @@
 #include "../Headers/LRY_IMO.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <stdio.h>
 #include<bits/stdc++.h> //Utilizar esta biblioteca é uma má prática de programação.
 
 #define TIPO_APARTAMENTO 1
@@ -176,6 +178,36 @@ void LRY_IMO::salvarImoveis()
     std::cout<<"Arquivo salvo com sucesso.\n";
 }
 
+int LRY_IMO::menuVendaouAluguel(){
+    string opcao;
+
+    cout << "Deseja cadastrar o imóvel como?\n";
+    cout << "\t1-Venda\n";
+    cout << "\t2-Aluguel\n";
+    cout<<"\tDigite a operação que deseja ser realizada: ";
+    cin>>opcao;
+    cin.ignore();
+
+    stringstream op (opcao);
+    int escolha = 0;
+    op>>escolha;
+
+    switch (escolha)
+    {
+    case 0:
+        menuVendaouAluguel();
+        break;
+    case 1:
+        return 1;
+        break;
+    case 2:
+        return 2; 
+        break;
+    default:
+        menuVendaouAluguel();
+        break;
+    }
+}
 void LRY_IMO::cadastrarApartamento()
 {
     Apartamento *ap;
@@ -186,8 +218,7 @@ void LRY_IMO::cadastrarApartamento()
 
     cout<<"Descrição: ";
     getline(cin,descricao);
-    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
-    cin>>tipoOferta;
+    tipoOferta=LRY_IMO::menuVendaouAluguel();
     cout<<"Valor: ";
     cin>>valor;
     cout<<"Cidade: ";
@@ -235,8 +266,7 @@ void LRY_IMO::cadastrarTerreno ()
 
     cout<<"Descrição: ";
     getline(std::cin,descricao);
-    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
-    cin>>tipoOferta;
+    tipoOferta=LRY_IMO::menuVendaouAluguel();
     cout<<"Valor: ";
     cin>>valor;
     cout<<"Cidade: ";
@@ -273,8 +303,7 @@ void LRY_IMO::cadastrarCasa()
 
     cout<<"Descrição: ";
     getline(cin,descricao);
-    cout<<"Tipo de oferta(aluguel-1/venda-2): ";
-    cin>>tipoOferta;
+    tipoOferta=LRY_IMO::menuVendaouAluguel();
     cout<<"Valor: ";
     cin>>valor;
     cout<<"Cidade: ";
@@ -322,7 +351,11 @@ string LRY_IMO::getCasas(int tipoOferta)
         {         
             saida << "\t=========Casa "<<i<<"=========\n";
             saida << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-            saida << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+            saida << "Tipo de Oferta: ";
+            if(((Casa *)*it)->getTipoOferta()==1)
+                saida <<"Venda\n";
+            else
+                saida <<"Aluguel\n";
             saida << "Valor: " << ((Casa *)*it)->getValor() << "\n";
             saida << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
             saida << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
@@ -356,7 +389,11 @@ string LRY_IMO::getApartamentos(int tipoOferta)
         {         
             saida << "\t=========Apartamento "<<i<<"=========\n";
             saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-            saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+            saida << "Tipo de Oferta: ";
+            if(((Apartamento *)*it)->getTipoOferta()==1)
+                saida <<"Venda\n";
+            else
+                saida <<"Aluguel\n";
             saida << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
             saida << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
             saida << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
@@ -392,7 +429,11 @@ string LRY_IMO::getTerrenos(int tipoOferta)
         {         
             saida << "\t=========Terreno "<<i<<"=========\n";
             saida << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-            saida << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+            saida << "Tipo de Oferta: ";
+            if(((Terreno *)*it)->getTipoOferta()==1)
+                saida <<"Venda\n";
+            else
+                saida <<"Aluguel\n";
             saida << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
             saida << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
             saida << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
@@ -497,7 +538,11 @@ std::string LRY_IMO::buscarPorBairro()
             {
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Apartamento *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
@@ -522,7 +567,11 @@ std::string LRY_IMO::buscarPorBairro()
             {
                 saida << "\tTerreno " << t << "\n";
                 saida << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Terreno *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
@@ -543,7 +592,11 @@ std::string LRY_IMO::buscarPorBairro()
             {   
                 saida << "\tCasa " << c << "\n";     
                 saida << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Casa *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Casa *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
@@ -582,7 +635,11 @@ std::string LRY_IMO::buscarPorCidade()
             {
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Apartamento *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
@@ -608,7 +665,11 @@ std::string LRY_IMO::buscarPorCidade()
             {
                 saida << "\tTerreno " << t << "\n";
                 saida << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Terreno *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
@@ -630,7 +691,11 @@ std::string LRY_IMO::buscarPorCidade()
             {   
                 saida << "\tCasa " << c << "\n";     
                 saida << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Casa*)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Casa *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
@@ -669,7 +734,11 @@ std::string LRY_IMO::buscarPorValor()
             {
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Apartamento *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
@@ -696,7 +765,11 @@ std::string LRY_IMO::buscarPorValor()
             {
                 saida << "\tTerreno " << t << "\n";
                 saida << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Terreno *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
@@ -719,7 +792,11 @@ std::string LRY_IMO::buscarPorValor()
             {   
                 saida << "\tCasa " << c << "\n";     
                 saida << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Casa *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Casa *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";
@@ -757,7 +834,11 @@ std::string LRY_IMO::buscarPorDescricao()
             {
                 saida << "\tApartamento " << a << "\n";
                 saida << "Descrição: " << ((Apartamento *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Apartamento *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Apartamento *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Apartamento *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Apartamento *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Apartamento *)*it)->getEndereco().getBairro() << "\n";
@@ -782,7 +863,11 @@ std::string LRY_IMO::buscarPorDescricao()
             {
                 saida << "\tTerreno " << t << "\n";
                 saida << "Descrição: " << ((Terreno *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Terreno *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Terreno *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Terreno *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Terreno *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Terreno *)*it)->getEndereco().getBairro() << "\n";
@@ -803,7 +888,11 @@ std::string LRY_IMO::buscarPorDescricao()
             {   
                 saida << "\tCasa " << c << "\n";     
                 saida << "Descrição: " << ((Casa *)*it)->getDescricao() << "\n";
-                saida << "Tipo de Oferta: " << ((Casa *)*it)->getTipoOferta() << "\n";
+                saida << "Tipo de Oferta: ";
+                if(((Casa *)*it)->getTipoOferta()==1)
+                    saida <<"Venda\n";
+                else
+                    saida <<"Aluguel\n";
                 saida << "Valor: " << ((Casa *)*it)->getValor() << "\n";
                 saida << "Cidade: " << ((Casa *)*it)->getEndereco().getCidade() << "\n";
                 saida << "Bairro: " << ((Casa *)*it)->getEndereco().getBairro() << "\n";

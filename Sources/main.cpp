@@ -9,13 +9,13 @@ std::string lista;
 
 void limpa_tela()
 {
-    #ifdef __unix__
+   /* #ifdef __unix__
         system("clear");
     #elif WIN32
         system("cls");
     #endif
-    
-    //printf("\e[H\e[2J");
+    */
+    printf("\e[H\e[2J");
 }
 
 extern int MenuPrincipal();
