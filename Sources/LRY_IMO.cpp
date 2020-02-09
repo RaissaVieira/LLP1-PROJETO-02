@@ -914,9 +914,9 @@ void LRY_IMO::removerImovel( string lista)
     int numero=1,tipo=0;
     //while(numero!=0 && (tipo==1 || tipo==2)){
     cout << "\n __________________________________________\n";
-    std::cout<<"Digite o tipo do imóvel que você deseja remover(Apartamento=1, Casa=2, Terreno=3): ";
+    std::cout<<"Digite o tipo do imóvel que você deseja remover (Apartamento=1, Casa=2, Terreno=3): ";
     std::cin>>tipo;
-    std::cout<<"Digite o número do imóvel que você deseja remover: ";
+    std::cout<<"Digite o indice do imóvel que você deseja remover: ";
     std::cin>>numero;
     //}
    vector<Imovel *>::iterator it;
@@ -984,9 +984,11 @@ void LRY_IMO::editarImoveis()
         case TIPO_TERRENO:     cout << getTerrenos(); 
     }*/
     int numero, count = 0, tipo;
-    cout<<"Digite o tipo do imóvel que você deseja remover(Apartamento=1, Casa=2, Terreno=3): ";
+    
+    cout << "\n __________________________________________\n";
+    cout<<"Digite o tipo do imóvel que você deseja editar (Apartamento=1, Casa=2, Terreno=3): ";
     cin>>tipo;
-    cout<<"Digite o número do imóvel que você deseja editar: ";
+    cout<<"Digite o indice do imóvel que você deseja editar: ";
     cin>>numero;
     cin.ignore();
 

@@ -73,7 +73,6 @@ void novaOperacao()
     switch (escolha)
     {
     case 0:
-        limpa_tela();
         novaOperacao();
         break;
     case 1:
@@ -85,10 +84,8 @@ void novaOperacao()
         SalvarArquivo();
         break;
     default:
-        limpa_tela();
         novaOperacao();
     }
-    //novaOperacao();
 
 }
 
@@ -229,7 +226,6 @@ void MenuBuscar (int buscar)
     stringstream op (opcao);
     int escolha = 0;
     op>>escolha; 
-    //std::string lista;
 
     switch (escolha)
     {
@@ -240,26 +236,22 @@ void MenuBuscar (int buscar)
         limpa_tela();
         lista=imobiliaria.buscarPorBairro();
         cout<<lista;
-        //MenuRemoverA(lista);
         break;
     case 2:
         limpa_tela();
         lista=imobiliaria.buscarPorCidade();
         cout<<lista;
-        //MenuRemoverA(lista);
         break;
     case 3:
         limpa_tela();
         lista=imobiliaria.buscarPorValor();
         cout<<lista;
-        //MenuRemoverA(lista);
         break;
     case 4:
         limpa_tela();
         lista=imobiliaria.buscarPorDescricao();
         cout<<lista;
         break;
-        //MenuRemoverA(lista);
     case 5: 
         limpa_tela();
         MenuPrincipal();
@@ -268,7 +260,7 @@ void MenuBuscar (int buscar)
         MenuBuscar(3);
     }
 
-    if(buscar != 5)
+    if(buscar != 5 && buscar != 4)
         novaOperacao();
 }
 
@@ -312,7 +304,7 @@ int MenuPrincipal()
         MenuEditar();
         break;
     case 5: 
-        MenuBuscar(5);
+        MenuBuscar(4);
         MenuRemover(lista);
         break;
     case 6:
